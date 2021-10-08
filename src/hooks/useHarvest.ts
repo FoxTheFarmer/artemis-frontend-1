@@ -37,7 +37,7 @@ export const useAllHarvest = (farmPids: number[]) => {
 export const useSousHarvest = (sousId, isUsingBnb = false) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  const sousChefContract = useSousChef2()
+  const sousChefContract = useSousChef2(sousPoolAddress)
   const masterChefContract = useMasterchef()
 
   const handleHarvest = useCallback(async () => {

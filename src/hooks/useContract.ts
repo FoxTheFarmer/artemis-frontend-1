@@ -103,8 +103,8 @@ export const useSousChef = (id) => {
   return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
 }
 
-export const useSousChef2 = () => {
+export const useSousChef2 = (sousPoolAddress) => {
   const abi = (sousChef as unknown) as AbiItem
-  return useContract(abi, getSousChefAddress())
+  return useContract(abi, sousPoolAddress)
 }
 export default useContract

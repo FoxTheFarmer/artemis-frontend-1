@@ -1,24 +1,28 @@
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
-  /* {
-    tokenName: 'WONE',
-    stakingTokenName: QuoteToken.MISONE,
-    stakingTokenAddress: '0x31222d37568BD54be95eCE3749f0559c45a85634',
+  {
+    tokenName: 'XYA',
+    stakingTokenName: QuoteToken.MISXYA,
+    stakingTokenAddress: '0xe22297cc3452aae66cee6ed1cb437e96219c3319',
+    // tokenPoolAddress is MIS
+    tokenPoolAddress: '0xD74433B187Cf0ba998Ad9Be3486B929c76815215',
+    // quoteTokenPoolAddress is XYA
+    quoteTokenPoolAddress: '0x9b68bf4bf89c115c721105eaf6bd5164afcc51e4',
     contractAddress: {
-      1666700000: '0x736E9c99cb9f9c39e25eF61181eeC83d484F9120',
-      1666600000: '0xc078b878ae6BB14a8734d8a788F496984Cc7dde2',
+      1666700000: '0x5aaf4bbECFf610186aeA98218f697029D5a77597',
+      1666600000: '0x5aaf4bbECFf610186aeA98218f697029D5a77597',
     },
-    poolCategory: PoolCategory.CORE,
-    projectLink: 'https://www.harmony.one/',
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://www.freyala.com/',
     harvest: true,
     tokenPerBlock: '1',
-    sortOrder: 1,
+    sortOrder: 0.16,
     isFinished: false,
-    startBlock: 15499711,
-    endBlock: 20499711,
+    startBlock: 17953943,
+    endBlock: 18554800,
     tokenDecimals: 18,
-   }, */
+   },
   // {
   //   sousId: 1,
   //   tokenName: 'TWT',

@@ -23,6 +23,8 @@ interface Props {
   isFinished: boolean
   blocksUntilStart: number
   poolCategory: PoolCategory
+  tokenPoolAddress: string
+  quoteTokenPoolAddress: string
 }
 
 const StyledFooter = styled.div<{ isFinished: boolean }>`
@@ -86,6 +88,8 @@ const CardFooter: React.FC<Props> = ({
   isFinished,
   blocksUntilStart,
   poolCategory,
+  tokenPoolAddress,
+  quoteTokenPoolAddress,
 }) => {
 
   const [isOpen, setIsOpen] = useState(false)
@@ -113,7 +117,7 @@ const CardFooter: React.FC<Props> = ({
             {TranslateString(4212, 'About the Project')}
           </LinkExternal>
 
-          <LinkExternal href='https://viperswap.one/#/add/0xF2f587fD8A423880037F39828d593d4cE1961A98' target="_blank">
+          <LinkExternal href={`https://app.defikingdoms.com/#/add/${tokenPoolAddress}/${quoteTokenPoolAddress}`} target="_blank">
             {TranslateString(4212, 'Get LP Tokens')}
           </LinkExternal>
         
