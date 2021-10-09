@@ -29,30 +29,20 @@ const useUnstake = (pid: number) => {
 
 const SYRUPIDS = [5, 6, 3, 1, 22, 23]
 
-export const useSousUnstake = (sousId) => {
+export const useSousUnstake = (sousPoolAddress) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  const masterChefContract = useSousChef2()
-  const sousChefContract = useSousChef(sousId)
-  const isOldSyrup = SYRUPIDS.includes(sousId)
+  const sousChefContract = useSousChef(sousPoolAddress)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      if (sousId === 0) {
-        const txHash = await sousUnstake(masterChefContract, amount, account)
-        console.info(txHash)
-      } else if (isOldSyrup) {
-        const txHash = await sousEmegencyUnstake(sousChefContract, amount, account)
-        console.info(txHash)
-      } else {
         const txHash = await sousUnstake(sousChefContract, amount, account)
         console.info(txHash)
-      }
-      dispatch(updateUserStakedBalance(sousId, account))
-      dispatch(updateUserBalance(sousId, account))
-      dispatch(updateUserPendingReward(sousId, account))
+      dispatch(updateUserStakedBalance(sousPoolAddress, account))
+      dispatch(updateUserBalance(sousPoolAddress, account))
+      dispatch(updateUserPendingReward(sousPoolAddress, account))
     },
-    [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, sousChefContract, sousPoolAddress],
   )
 
   return { onUnstake: handleUnstake }

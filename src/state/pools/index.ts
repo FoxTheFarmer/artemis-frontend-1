@@ -74,24 +74,24 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   dispatch(setPoolsUserData(userData))
 }
 
-export const updateUserAllowance = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserAllowance = (sousPoolAddress, account: string) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+  dispatch(updatePoolsUserData({ sousPoolAddress, field: 'allowance', value: allowances[sousPoolAddress] }))
 }
 
-export const updateUserBalance = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserBalance = (sousPoolAddress, account: string) => async (dispatch) => {
   const tokenBalances = await fetchUserBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+  dispatch(updatePoolsUserData({ sousPoolAddress, field: 'stakingTokenBalance', value: tokenBalances[sousPoolAddress] }))
 }
 
-export const updateUserStakedBalance = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserStakedBalance = (sousPoolAddress, account: string) => async (dispatch) => {
   const stakedBalances = await fetchUserStakeBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
+  dispatch(updatePoolsUserData({ sousPoolAddress, field: 'stakedBalance', value: stakedBalances[sousPoolAddress] }))
 }
 
-export const updateUserPendingReward = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserPendingReward = (sousPoolAddress, account: string) => async (dispatch) => {
   const pendingRewards = await fetchUserPendingRewards(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+  dispatch(updatePoolsUserData({ sousPoolAddress, field: 'pendingReward', value: pendingRewards[sousPoolAddress] }))
 }
 
 export default PoolsSlice.reducer
