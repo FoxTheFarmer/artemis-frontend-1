@@ -154,12 +154,18 @@ const NavBar = (props) => {
       <header>
           <div className="nav-wrapper">
               <nav>
+              <object 
+              type="image/svg+xml" 
+              data="/images/banner.svg" 
+              width="200px" style={{'marginTop': '10px', 'marginBottom': '10px', 'marginLeft': '20px'}}>&nbsp;</object>
+
                 <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
                 <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>
                   <div className="menu"/>
                   <div className="menu"/>
                   <div className="menu"/>
                 </button>
+                
 
                   <div className="nav-container">
                       <ul className="nav-tabs">
@@ -171,13 +177,13 @@ const NavBar = (props) => {
                         </li>
 
                         <li className="nav-tab">
-                          <Link to="/" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/hades" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Bond</span>
                           </Link>
                         </li>
 
                         <li className="nav-tab">
-                          <Link to="/incubator" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/elysium" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Pools</span>
                           </Link>
                         </li>
@@ -197,47 +203,20 @@ const NavBar = (props) => {
                             <FaTwitter style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
-                        <li className="web3li">
+                        <li className="web3li outsideMainNav">
                           <Link to="/" className="nav-links connect">
                           { account != null && account.length > 1? 
                             <Price style={{'marginTop': '-2px', 'marginLeft': '30px'}}>{account.substring(0,( isOnPhone ? 8 : 8))} <p style={{'color': 'white'}}>...</p></Price>:
                               <UnlockButton style={{
-                                backgroundColor: 'rgb(22, 35, 73) !important',
-                                border: '0px',
-                                color: '#ffff !important',
-                                borderRadius: '16px',
-                                fontSize: '15px',
-                                fontWeight: '800',
-                                width: '100%',
-                                display: 'inline-flex',
-                                height: '44px',
-                                letterSpacing: '0.03em',
-                                padding: '15px',
-                                minHeight: '21px',
-                                maxHeight: '33px',
+                                marginLeft: '35px',
+                                marginTop: '-4px',
+                                width: '73%',
                               }}>Connect</UnlockButton>}
                           </Link>
                         </li>
-
-  
-                        
                  </ul>
-                 <ul className="web3buttons">
-
-
-
-
-                 <li className="web3li insideMainNav">
-                    <a target="_blank" rel="noreferrer" style={{'width': '100% !important' }} 
-                    href='https://app.defikingdoms.com/' 
-                    className="nav-links connect">
-                      <Button style={{'fontSize': '15px', 'borderRadius': '16px', 'width': '100% !important', 'backgroundColor': '#4C68EF'}}>
-                        <b>Get MIS</b>
-                      </Button>
-                    </a>
-                  </li>
-
-
+                
+                <ul className="web3buttons">
                  <li className="web3li insideMainNav">
                    <a target="_blank" rel="noreferrer" href="https://info.defikingdoms.com/token/0xd74433b187cf0ba998ad9be3486b929c76815215" className="nav-links price">
                   <Price
@@ -252,14 +231,15 @@ const NavBar = (props) => {
                   <Link to="/" className="nav-links connect">
                   { account != null && account.length > 1? 
                     <Price>{account.substring(0,( isOnPhone ? 8 : 8)).concat("...")} <p style={{'color': 'white'}}> ✓</p></Price>:
+
                   <UnlockButton style={{
                     backgroundColor: 'rgb(22, 35, 73) !important',
-                    border: '0px',
+                    border: '1px',
                     color: '#8299dd !important',
-                    borderRadius: '16px',
+                    borderRadius: '10px',
                     fontSize: '15px',
-                    fontWeight: '800',
-                    width: '100%',
+                    fontWeight: '200',
+                    width: '80%',
                     display: 'inline-flex',
                     height: '44px',
                     letterSpacing: '0.03em',

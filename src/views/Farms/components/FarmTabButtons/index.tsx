@@ -6,16 +6,25 @@ import useI18n from 'hooks/useI18n'
 import Switch from "react-switch";
 import { FaQuestionCircle } from 'react-icons/fa'
 
-const Divider = styled.div`
-background-color: #4c68ef;
-height: 3px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 20px;
-margin-bottom: 25px;
-width: 30%;
+const BtnMenu = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 120px;
+  padding: 12px;
+  `
 
-`
 
 const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
   const { url, isExact } = useRouteMatch()
@@ -33,23 +42,25 @@ const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
         </ToggleWrapper>
         */}
 
-        
-        { !tokenMode ?
-        <Blablabla >
-          <FaQuestionCircle/> First time? Read our <a target="_blanK" rel="noreferrer" href="https://medium.com/@hsuxx200/artemis-protocol-how-to-deposit-into-artemis-earn-ecd8451dba2c"><GuideLink>guide</GuideLink></a>
-        </Blablabla>
-       : 
-       "" 
-       }
 
-        <ButtonMenu   activeIndex={isExact ? 0 : 1} size="sm" >
-          <ButtonMenuItem as={Link} to={`${url}`} >
+
+          <BtnMenu as={Link} to={`${url}`} 
+          style={{
+            marginRight: '10px',
+            marginTop: '0px',
+            marginLeft: '10px',
+            width: '80%',
+          }} >
             {TranslateString(698, 'Active')}
-          </ButtonMenuItem>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
+          </BtnMenu>
+          <BtnMenu as={Link} 
+          to={`${url}/history`}
+          style={{
+            marginRight: '0px',
+            marginTop: '0px',
+            width: '80%',}} >
             {TranslateString(700, 'Inactive')}
-          </ButtonMenuItem>
-        </ButtonMenu>
+          </BtnMenu>
       </ActionsWrapper>
 
     </Wrapper>

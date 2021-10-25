@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tag, Flex, Heading, Image } from '@pancakeswap-libs/uikit'
+import { Tag, Flex, Heading, Image, LinkExternal, Link } from '@pancakeswap-libs/uikit'
 import { CommunityTag, CoreTag, RiskTag, NoFeeTag } from 'components/Tags'
-import { FaSeedling } from 'react-icons/fa';
+import { FaGhost, FaLongArrowAltRight, FaSeedling } from 'react-icons/fa';
+import { TranslateString } from 'utils/translateTextHelpers';
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -38,11 +39,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     <Wrapper justifyContent="space-between" alignItems="center" mb="20px">
 
 
+      <object type="image/svg+xml" data="/images/farms/mis-one.svg" width="40px">&nbsp;</object>
+
       <Flex flexDirection="column" alignItems="flex-end">
-        <Heading size="md" mb="0px" marginRight="2px">{lpLabel}</Heading>
+        <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/'>{lpLabel} <FaLongArrowAltRight/></Link>
       </Flex>
 
-      {/* <Heading size="md" mb="8px" marginRight="2px">Deposit Fee{depositFee}</Heading> */}
+      <Flex flexDirection="column" alignItems="flex-end">
+        <Link style={{'color': '#CBCBCB', 'fontSize': '15px'}} href='https://explorer.harmony.one/'><FaGhost/></Link>
+      </Flex>
 
 
     </Wrapper>

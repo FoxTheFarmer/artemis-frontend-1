@@ -39,6 +39,34 @@ const BalanceAndCompound = styled.div`
   flex-direction: column;
 `
 
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: #2E3543 !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #2E3543 !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 120px;
+  padding: 20px;
+  `
+
+  const LPStaked = styled.text`
+font-size: 12px;
+font-weigth: 30;
+align-items: center;
+color: ${({ theme }) => theme.colors.textSubtle};
+margin-top: 3px;
+justify-content: flex-start;
+`
+
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
@@ -54,9 +82,9 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   return (
     <Flex mb='10px' justifyContent='space-between' alignItems='center'>
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>
-          <Staked>
+          <LPStaked style={{'color': 'white', 'fontSize': '16px'}}>
               {displayBalance}
-          </Staked>
+          </LPStaked>
 
           {earnings.gt(0) && <USDStaked>~${displayBalanceUsd}</USDStaked>}
 
@@ -66,11 +94,9 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
       <BalanceAndCompound>
         {pid === labo.pids.pidLabo ?
-          <Button
+          <StyledBtn
             disabled={rawEarningsBalance === 0 || pendingTx}
-            size='sm'
-            variant='secondary'
-            marginBottom='15px'
+
             onClick={async () => {
               setPendingTx(true)
               await onStake(rawEarningsBalance.toString())
@@ -84,9 +110,9 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
             }}
           >
             {TranslateString(999, 'Compound')}
-          </Button>
+          </StyledBtn>
           : null}
-        <Button
+        <StyledBtn
           disabled={rawEarningsBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -94,14 +120,12 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
             setPendingTx(false)
           }}
           style={{
-            'borderRadius': '5px',
-            'height': '42px',
-            'width': '103px',
+
             'color': 'white'
           }}
         >
-          {TranslateString(999, 'Settle')}
-        </Button>
+          {TranslateString(999, 'Claim')}
+        </StyledBtn>
       </BalanceAndCompound>
     </Flex>
   )

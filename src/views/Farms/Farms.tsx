@@ -74,6 +74,8 @@ const Feature = styled.div`
     }
   
 `
+
+
 const FeatureLink = styled.a`
   color: yellow !important
 `
@@ -192,9 +194,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         <FlexLayout>
 
         <Feature >
-          <FaHistory /><br />
-
-          <p>The base emission rate is currently {vikingPerBlock} MIS per block.</p>
+          <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
         </Feature>
           
         </FlexLayout>

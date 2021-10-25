@@ -89,9 +89,7 @@ const Home: React.FC = () => {
         </SvgHero> */}
 
         <FlowRow>
-          <Cards className="CardsLayout">
-            <FarmedStakingCard />    
-          </Cards>
+
 
           <Cards className="CardsLayout">
               <FarmStakingCard/>    

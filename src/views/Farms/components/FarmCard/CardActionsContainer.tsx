@@ -44,11 +44,25 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 
-const Quote = styled.p`
-      font-size: 16px;
-      margin-bottom: 2px;
-      color: #4c68ef
-`
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  margin-top: 12px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 170px;
+  padding: 20px;
+  `
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }) => {
   const TranslateString = useI18n()
@@ -102,23 +116,28 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
       />
     ) : (
       <span data-tip data-for='happyFace'>
-      <Button style={{'borderRadius': ( true ? '5px' : '')}} mt="8px" fullWidth disabled={requestedApproval || labo.isLocked.unlockWalletButton} onClick={handleApprove}>
-        {TranslateString(999, 'Approve Contract')}
-      </Button>
-      {(
-        labo.isLocked.unlockWalletButton 
-        ? 
-      
-        (
-          <ReactTooltip id='happyFace' type='info'>
-          <span style={{'color': 'white'}}>Do not add liquidity yet, this is a test token.</span>
-          </ReactTooltip>
-        )
-        :
-        ''
+
+      <Flex justifyContent="end">
+        <StyledBtn
+        disabled={requestedApproval || labo.isLocked.unlockWalletButton} 
+        onClick={handleApprove}>
+          {TranslateString(999, 'Approve Contract')}
+        </StyledBtn>
         
-      )
-      } 
+        {(
+          labo.isLocked.unlockWalletButton 
+          ? 
+        
+          (
+            <ReactTooltip id='happyFace' type='info'>
+            <span style={{'color': 'white'}}>Do not add liquidity yet, this is a test token.</span>
+            </ReactTooltip>
+          )
+          :
+          ''
+        )
+        } 
+      </Flex>
       </span>
     )
   }
@@ -127,9 +146,25 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
     <Action>
 
       <HarvestAction earnings={earnings} pid={pid} />
-      
-      {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
-    
+
+
+      {!account ? <UnlockButton
+      style={{
+        border: '1px',
+        color: '#8299dd !important',
+        borderRadius: '10px',
+        fontSize: '15px',
+        fontWeight: '200',
+        width: '100%',
+        display: 'inline-flex',
+        height: '44px',
+        padding: '20px',
+        minHeight: '21px',
+        maxHeight: '33px',
+        marginTop: '12px',
+      }} 
+/> : renderApprovalOrStakeButton()}
+
     </Action>
   )
 }

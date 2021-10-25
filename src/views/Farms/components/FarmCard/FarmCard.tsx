@@ -8,7 +8,7 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { PoolCategory, QuoteToken } from 'config/constants/types'
-import { FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
+import { FaClock, FaFire, FaFlask, FaGhost, FaHistory, FaInfinity, FaLock, FaMountain, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -58,7 +58,7 @@ const StyledCardAccent = styled.div`
 
 const FCard = styled.div`
   align-self: baseline;
-  background: #232F3C;
+  background: #1E2129;
   border-radius: 20px;
   box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
   display: flex;
@@ -70,7 +70,7 @@ const FCard = styled.div`
 `
 
 const CCARD = styled.div`
-background: #232F3C;
+background: #1E2129;
 border-radius: 20px;
 flex-direction: column;
 justify-content: space-around;
@@ -80,7 +80,7 @@ text-align: center;
 `
 
 const DCard = styled.div`
-  background: #151515;
+  background: #2E3543;
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
@@ -92,12 +92,8 @@ const DCard = styled.div`
 
 const Quote = styled.p`
     font-size: 15px;
-    font-weight: 200;
+    font-weight: 100;
     margin-bottom: 0px;
-`
-
-const APRTEXT = styled.p`
-    font-size: 15px;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -184,7 +180,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
   const farmApyFixed = rewPerYear.times(cakePrice).div(totalValue).times(100)
   const farmAPY = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.toNumber().toLocaleString(undefined, {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 0,
   })}%` : '...loading' )
   const Daily = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.div(365).toNumber().toLocaleString(undefined, {
     minimumFractionDigits: 2,
@@ -203,6 +199,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
     <FCard>
       
       {farm.tokenSymbol === 'MIS' && <StyledCardAccent />}
+      
 
       <DCard>
         <CardHeading
@@ -217,14 +214,16 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
         {!removed && (
           <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <span>ROI</span>
+            <span>Returns</span>
             <span>Daily</span>
+            <span>Duration</span>
           </Flex>
         )}
 
         <Flex justifyContent='space-between'>
-        <Quote>{farmAPY}</Quote>
+          <Quote>{farmAPY}</Quote>
           <Quote>{Daily}</Quote>
+          <Quote><FaInfinity/> Infinite</Quote>
         </Flex>
       </DCard>
 

@@ -14,8 +14,8 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 510;
+    font-family: 'Exo', sans-serif; !important;
+    font-weight: 600;
     
   }
 

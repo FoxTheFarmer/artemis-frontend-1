@@ -6,10 +6,11 @@ import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { FaArrowAltCircleDown } from 'react-icons/fa'
+import { FaArrowDown, FaArrowUp, FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaRegHandPointDown, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 import './index.css'
+
 
 interface FarmCardActionsProps {
   stakedBalance?: BigNumber
@@ -29,9 +30,46 @@ const IconButtonWrapper = styled.div`
 `
 
 const Staked = styled.div`
-  font-size: 10px;
+  font-size: 8px;
   color: ${({ theme }) => theme.colors.textSubtle};
 `
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 100px;
+  padding: 20px;
+  `
+
+  const SumMinus = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 50px;
+  padding: 20px;
+  `
 
 const StakeAction: React.FC<FarmCardActionsProps> = (
     { stakedBalance,
@@ -69,15 +107,25 @@ const StakeAction: React.FC<FarmCardActionsProps> = (
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit} style={{'borderRadius': '5px'}}> {TranslateString(999, 'Deposit')}</Button>
+      <StyledBtn onClick={onPresentDeposit} > {TranslateString(999, 'Deposit ')} </StyledBtn>
     ) : (
       <IconButtonWrapper>
-        <IconButton variant="primary" style={{'borderRadius': '5px'}} onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon className="minusplus" fill='white'/>
-        </IconButton>
-        <IconButton variant="primary" style={{'borderRadius': '5px'}} onClick={onPresentDeposit}>
-          <AddIcon className="minusplus" color="white"/>
-        </IconButton>
+        
+        <SumMinus 
+        onClick={onPresentWithdraw} 
+        style={{
+          marginRight: '5px',
+          marginTop: '0px',
+          marginLeft: '5px',
+        }}><FaArrowUp/>
+        </SumMinus>
+
+        <SumMinus style={{
+          marginRight: '0px',
+          marginTop: '0px',
+          marginLeft: '0px',
+        }} onClick={onPresentDeposit}><FaArrowDown/>        
+        </SumMinus>
       </IconButtonWrapper>
     )
   }
@@ -90,13 +138,27 @@ const StakeAction: React.FC<FarmCardActionsProps> = (
   margin-top: 3px;
   justify-content: flex-start;
 `
+
+const LPStaked = styled.text`
+font-size: 12px;
+font-weigth: 30;
+align-items: center;
+color: ${({ theme }) => theme.colors.textSubtle};
+margin-top: 3px;
+justify-content: flex-start;
+`
+
   return (
     <Flex justifyContent="space-between" alignItems="center">
+      
       <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
-        <Staked>
+
+        <LPStaked style={{'color': 'white', 'fontSize': '16px'}}  >
           {displayBalance}
-        </Staked>
+        </LPStaked>
+
         {stakedBalance.gt(0) && <USDStaked>~${displayBalanceUsd}</USDStaked>}
+
       </Heading>
       {renderStakingButtons()}
     </Flex>
