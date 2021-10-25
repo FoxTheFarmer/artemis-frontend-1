@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Skeleton, LinkExternal } from '@pancakeswap-libs/uikit'
+import { Flex, Skeleton, LinkExternal, Card } from '@pancakeswap-libs/uikit'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { PoolCategory, QuoteToken } from 'config/constants/types'
-import { FaClock, FaFire, FaFlask, FaGhost, FaLock, FaMountain, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
+import { FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -58,21 +58,42 @@ const StyledCardAccent = styled.div`
 
 const FCard = styled.div`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
-  border-radius: 12px;
+  background: #232F3C;
+  border-radius: 20px;
   box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 24px;
+  padding: 20px;
   position: relative;
+  text-align: center;
+`
+
+const CCARD = styled.div`
+background: #232F3C;
+border-radius: 20px;
+flex-direction: column;
+justify-content: space-around;
+padding: 15px;
+position: center;
+text-align: center;
+`
+
+const DCard = styled.div`
+  background: #151515;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  position: center;
   text-align: center;
 `
 
 
 const Quote = styled.p`
     font-size: 15px;
-    margin-bottom: 8px;
+    font-weight: 200;
+    margin-bottom: 0px;
 `
 
 const APRTEXT = styled.p`
@@ -114,8 +135,8 @@ const Divider2 = styled.div`
   height: 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   width: 0%;
 `
 interface FarmCardProps {
@@ -178,47 +199,35 @@ const FarmCard: React.FC<FarmCardProps> = ({
     // console.log("farmAPY", farmAPY)
   
   return (
-    
+
     <FCard>
       
       {farm.tokenSymbol === 'MIS' && <StyledCardAccent />}
-      <CardHeading
-        lpLabel={lpLabel}
-        multiplier={farm.multiplier}
-        risk={risk}
-        depositFee={farm.depositFeeBP}
-        farmImage={farmImage}
-        tokenSymbol={farm.tokenSymbol}
-      />
+
+      <DCard>
+        <CardHeading
+          lpLabel={lpLabel}
+          multiplier={farm.multiplier}
+          risk={risk}
+          depositFee={farm.depositFeeBP}
+          farmImage={farmImage}
+          tokenSymbol={farm.tokenSymbol}
+        />
 
 
-      {!removed && (
-        <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-          <span><FaTractor/> APR</span>
-          <APRTEXT style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apy ? (
-              <>
-                {/* <ApyButton
-                  lpLabel={lpLabel}
-                  quoteTokenAdresses={quoteTokenAdresses}
-                  quoteTokenSymbol={quoteTokenSymbol}
-                  tokenAddresses={tokenAddresses}
-                  cakePrice={cakePrice}
-                  apy={farm.apy}
-                /> */}
-                &nbsp;&nbsp;{farmAPY}
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
-            )}
-          </APRTEXT>
+        {!removed && (
+          <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
+            <span>ROI</span>
+            <span>Daily</span>
+          </Flex>
+        )}
+
+        <Flex justifyContent='space-between'>
+        <Quote>{farmAPY}</Quote>
+          <Quote>{Daily}</Quote>
         </Flex>
-      )}
+      </DCard>
 
-      <Flex justifyContent='space-between'>
-        <span><FaSeedling /> Daily Returns</span>
-        <Quote>{Daily}</Quote>
-      </Flex>
 
 
       {/*
@@ -228,13 +237,9 @@ const FarmCard: React.FC<FarmCardProps> = ({
       </Flex>
       */}
 
-      <Flex justifyContent='space-between'>
-        <span><FaFire/> Deposit Fee</span>
-        <Quote>{ ( !Number.isNaN(farm.depositFeeBP) ? `${(farm.depositFeeBP / 100)}%` : '...loading') }</Quote>
-      </Flex>
 
 
-      <Flex justifyContent="left">
+      {/* <Flex justifyContent="left">
         <StyledLinkExternal external href={
           farm.isTokenOnly ?
             `https://app.defikingdoms.com/#/marketplace?inputCurrency=${tokenAddresses[process.env.REACT_APP_CHAIN_ID]}`
@@ -243,15 +248,17 @@ const FarmCard: React.FC<FarmCardProps> = ({
         }>
           <span ><FaGhost/> Add Liquidity</span>
         </StyledLinkExternal>
-      </Flex>
+      </Flex> */ }
       
-      <Divider/>
-
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
 
       <Divider2/>
 
-      <Flex justifyContent='right'>
+    <CCARD>
+      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
+    </CCARD>
+
+
+      {/* <Flex justifyContent='right'>
         <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
       </Flex>
 
@@ -271,7 +278,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
           quoteTokenSymbol={quoteTokenSymbol}
           tokenAddresses={tokenAddresses}
         />
-      </ExpandingWrapper>
+      </ExpandingWrapper> */ }
     </FCard>
   )
 }

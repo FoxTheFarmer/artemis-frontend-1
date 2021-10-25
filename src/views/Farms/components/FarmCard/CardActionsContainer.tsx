@@ -125,14 +125,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
 
   return (
     <Action>
-      <Flex>
-        <Quote>{TranslateString(192, 'Pending MIS')}</Quote>
-      </Flex>
+
       <HarvestAction earnings={earnings} pid={pid} />
       
-      <Flex>
-        <Quote>{TranslateString(999, 'Your Deposits')}</Quote>
-      </Flex>
       {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
     
     </Action>

@@ -13,16 +13,16 @@ h1 {
 
 .nav-wrapper {
 	display: flex;
-	position: relative;
+	position: center;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	margin: auto;
 	width: 80%;
 	height: 120px;
 	border-radius: 0 0 15px 15px;
-	padding: 0 25px;
+	padding: 0 0;
 	z-index: 81;
 }
 
