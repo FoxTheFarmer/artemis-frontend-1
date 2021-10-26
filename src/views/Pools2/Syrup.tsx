@@ -29,20 +29,6 @@ import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Hero2 from './components/Hero'
 
-const Title = styled.p`
-  font-size: 1.1em;
-  margin-bottom: 40px;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  color: #2E2E2E;
-
-`
-const Sub = styled.p`
-  font-size: 1em;
-  color: #6E4EED;
-`
-
 const Feature = styled.div`
   display: flex;
   flex-flow: column;
@@ -98,18 +84,6 @@ margin-top: 25px;
 margin-bottom: 25px;
 width: 20%;
 
-`
-
-const SvgHero = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  padding: 22px 1px;
-
-  @media and all (max-width: 1000px) {
-    max-width: 80%;
-  }
-  
 `
 
 
@@ -179,19 +153,8 @@ const Farm: React.FC = () => {
 
   return (
     <Page>
-      <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
-      <Alert title="" variant="warning" onClick={handleModal}>
-        <p>Disclaimer: Since MIS deposits will be burned, you will need an average of 100% ROI to break even <FaFireAlt /></p>
-      </Alert>
-      </div>
-       <SvgHero>
-          <object 
-          type="image/svg+xml" 
-          data="images/hades/hero.svg" 
-          className="labhero" 
-          style={{maxWidth: '600px', marginLeft: '0px'}}
-          >&nbsp;</object>
-        </SvgHero> 
+
+
 
 {/*
       <Wrapper>
@@ -203,7 +166,7 @@ const Farm: React.FC = () => {
             {TranslateString(700, 'Inactive')}
           </ButtonMenuItem>
         </ButtonMenu>
-      </Wrapper> */ }
+      </Wrapper> 
 
 
 
@@ -224,13 +187,30 @@ const Farm: React.FC = () => {
         </Features>
         </div>    
 
+        <Wrapper>
+
+        <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
+
+            <ButtonMenuItem as={Link} to={`${url}`} >
+              {TranslateString(698, 'Active')}
+            </ButtonMenuItem>
+
+            <ButtonMenuItem as={Link} to={`${url}/history`}>
+              {TranslateString(700, 'Inactive')}
+            </ButtonMenuItem>
+
+        </ButtonMenu>
+
+        </Wrapper> */ }
+
+
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>
             {orderBy(openPools, ['sortOrder']).map((pool2) => (
               <PoolCard key={pool2.sousId} pool2={pool2} />
             ))}
-            <Coming />
+            {/* <Coming /> */ }
           </>
         </Route>
         <Route path={`${path}/history`}>
@@ -242,11 +222,7 @@ const Farm: React.FC = () => {
 
       <FlexLayout>
           <Feature >
-            <FaFireAlt /><br /> Hades
-
-
-
-
+            LP Deposits cannot be withdrawn.
           </Feature>
       </FlexLayout>
           

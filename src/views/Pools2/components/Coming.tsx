@@ -62,16 +62,11 @@ const Coming: React.FC = () => {
       <div style={{ padding: '34px' }}>
 
 
-        <Image src="/images/incubatorbanner.svg" width={300} height={140} />
 
 
         <Label>{TranslateString(4216, 'Apply now and distribute your token through Artemis Hades Pools. ')}</Label>
         <Label2>{TranslateString(4216, 'Bear in mind that applications will go through governance and be reviewed by a third party up until permissionless listings are implemented.')}</Label2>
-        
-        <Divider />
-        <LinkExternal href="https://artemis-protocol.gitbook.io/artemis/the-protocol/artemis-earn/hades-pools" mr="16px" mt='20px'>
-              {TranslateString(999, 'Read More')}
-        </LinkExternal>
+
         
         
 
