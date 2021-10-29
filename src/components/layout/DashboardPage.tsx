@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import Container from './Container'
 
-const Page = styled(Container)`
-  min-height: calc(0vh - 64px);
+const DashboardPage = styled(Container)`
+  min-height: calc(1vh - 64px);
   padding-top: 16px;
-  padding-bottom: 16px;
+  padding-bottom: 6px;
+  padding: 5px;
+  max-width: 550px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 24px;
@@ -17,4 +19,4 @@ const Page = styled(Container)`
   }
 `
 
-export default Page
+export default DashboardPage

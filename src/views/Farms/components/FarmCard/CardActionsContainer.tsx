@@ -54,13 +54,12 @@ const StyledBtn = styled.button`
   border-radius: 10px;
   color: #ffff;
   font-size: 15px;
-  margin-top: 12px;
   font-weight: 400;
   width: 100%;
   display: inline-flex;
   min-height: 18px;
   max-height: 30px;
-  max-width: 170px;
+  max-width: 90px;
   padding: 20px;
   `
 
@@ -121,7 +120,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
         <StyledBtn
         disabled={requestedApproval || labo.isLocked.unlockWalletButton} 
         onClick={handleApprove}>
-          {TranslateString(999, 'Approve Contract')}
+          {TranslateString(999, 'Enable')}
         </StyledBtn>
         
         {(

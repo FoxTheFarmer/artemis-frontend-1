@@ -7,6 +7,7 @@ import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { FaArrowDown, FaArrowUp, FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaRegHandPointDown, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
+import StyledBTN from 'components/layout/StyledBTN'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 import './index.css'
@@ -33,24 +34,6 @@ const Staked = styled.div`
   font-size: 8px;
   color: ${({ theme }) => theme.colors.textSubtle};
 `
-const StyledBtn = styled.button`
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0,0) !important;
-  border: 1px;
-  border-style: solid !important;
-  border-color: #ffff !important;
-  border-radius: 10px;
-  color: #ffff;
-  font-size: 15px;
-  font-weight: 400;
-  width: 100%;
-  display: inline-flex;
-  min-height: 18px;
-  max-height: 30px;
-  max-width: 100px;
-  padding: 20px;
-  `
 
   const SumMinus = styled.button`
   -webkit-box-align: center;
@@ -107,7 +90,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = (
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <StyledBtn onClick={onPresentDeposit} > {TranslateString(999, 'Deposit ')} </StyledBtn>
+      <StyledBTN onClick={onPresentDeposit} > {TranslateString(999, 'Stake ')} </StyledBTN>
     ) : (
       <IconButtonWrapper>
         
@@ -166,3 +149,4 @@ justify-content: flex-start;
 }
 
 export default StakeAction
+

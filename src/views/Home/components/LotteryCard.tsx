@@ -1,17 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, useModal, LinkExternal } from '@pancakeswap-libs/uikit'
-import { getCakeAddress } from 'utils/addressHelpers'
-import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
-import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
-import useTokenBalance from 'hooks/useTokenBalance'
-import { useMultiClaimLottery } from 'hooks/useBuyLottery'
-import { useTotalClaim } from 'hooks/useTickets'
-import { FaBroadcastTower, FaChartBar, FaExchangeAlt, FaScroll, FaTicketAlt, FaVoteYea } from 'react-icons/fa'
-import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
-import CakeWinnings from './CakeWinnings'
-import LotteryJackpot from './LotteryJackpot'
+import { FaBroadcastTower, FaVoteYea } from 'react-icons/fa'
 
 const StyledLotteryCard = styled(Card)`
   background-repeat: no-repeat;
@@ -25,26 +16,17 @@ const StyledLotteryCard = styled(Card)`
 `
 // background-image: url('/images/ticket-bg.svg'); ^^^
 const Divider = styled.div`
-background-color: #FAFAFA;
-height: 3px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 20px;
-margin-bottom: 20px;
-width: 100%;
+  background-color: #FAFAFA;
+  height: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
 `
 
 const Block = styled.div`
   margin-bottom: 16px;
-`
-
-const CardImage = styled.img`
-  margin-bottom: 16px;
-`
-
-const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
 `
 
 const Title = styled.p`
@@ -53,40 +35,13 @@ const Title = styled.p`
 
 `
 
-const Actions = styled.div`
-  display: flex;
-  margin-top: 24px;
-  button {
-    flex: 1 0 50%;
-  }
-`
-
 const FarmedStakingCard = () => {
-  const lotteryHasDrawn = useGetLotteryHasDrawn()
-  const [requesteClaim, setRequestedClaim] = useState(false)
   const TranslateString = useI18n()
-  const { claimAmount } = useTotalClaim()
-  const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getCakeAddress())
-
-  const handleClaim = useCallback(async () => {
-    try {
-      setRequestedClaim(true)
-      const txHash = await onMultiClaim()
-      // user rejected tx or didn't go thru
-      if (txHash) {
-        setRequestedClaim(false)
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }, [onMultiClaim, setRequestedClaim])
-
-  const [onPresentBuy] = useModal(<BuyModal max={cakeBalance} tokenName="CAKE" />)
 
   return (
     <StyledLotteryCard>
       <CardBody>
+
         <Title>
           <span><FaBroadcastTower/> Bridge</span>
         </Title>
@@ -104,16 +59,14 @@ const FarmedStakingCard = () => {
         <Title>
           <span><FaVoteYea /> Misc</span>
         </Title>
+
         <Block>
-        <LinkExternal href='https://gov.harmony.one/#/artemis'> Governance</LinkExternal>
-        </Block>
-        <Block>
-        <LinkExternal href='https://artemischarts.northeurope.cloudapp.azure.com/'> Charts</LinkExternal>
+          <LinkExternal href='https://gov.harmony.one/#/artemis'> Governance</LinkExternal>
         </Block>
 
-
-
-
+        <Block>
+          <LinkExternal href='https://artemischarts.northeurope.cloudapp.azure.com/'> Charts</LinkExternal>
+        </Block>
 
       </CardBody>
     </StyledLotteryCard>

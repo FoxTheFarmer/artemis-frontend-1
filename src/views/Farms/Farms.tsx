@@ -4,51 +4,23 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import labo from 'config/constants/labo'
 import { provider } from 'web3-core'
-import { Image, Heading, Alert, LinkExternal } from '@pancakeswap-libs/uikit'
-import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
+import { BLOCKS_PER_YEAR } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import {getTotalValueFromQuoteTokens, useFarms, usePriceBnbBusd, usePriceCakeBusd, usePrices} from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
-import { QuoteToken } from 'config/constants/types'
-import { FaUserCheck, FaLock, FaHistory } from 'react-icons/fa';
 import useI18n from 'hooks/useI18n'
+import PoolsDashboard from 'views/PoolsDashboard'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
-import Divider from './components/Divider'
 
 
 export interface FarmsProps{
   tokenMode?: boolean
 }
 
-const Title = styled.p`
-  text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
-
-`
-const Sub = styled.p`
-  text-align: center;
-  font-size: 1em;
-  color: #6E4EED;
-  margin-bottom: 25px;
-`
-
-const Features = styled.div`
-  display: flex;
-  flex-flow: row;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-  @media screen and (max-width: 680px){
-    flex-flow: column;
-  }
-`
 
 const Feature = styled.div`
   display: flex;
@@ -75,22 +47,6 @@ const Feature = styled.div`
   
 `
 
-
-const FeatureLink = styled.a`
-  color: yellow !important
-`
-
-const SvgHero = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  padding: 22px 1px;
-
-  @media and all (max-width: 1000px) {
-    max-width: 80%;
-  }
-  
-`
 
 const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const { path } = useRouteMatch()
@@ -170,13 +126,14 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   return (
     <Page>
+    
+    <PoolsDashboard/>
 
   {/* <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
       <Alert title="" variant="warning" onClick={handleModal}>
         <p>Artemis Earn rewards will begin on <a target="_blank" rel="noreferrer" style={{"color": "#0073ff"}} href="https://explorer.harmony.one/block/17996500">October 9th.</a></p>
       </Alert>
       </div>    */}
-
 
       <div>
 
@@ -198,20 +155,12 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         </Feature>
           
         </FlexLayout>
+
       </div>
+      
     </Page>
   )
 }
 
-const Hero = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  padding: 0 12px 47px 12px;
-
-  @media all and (max-width: 1350px) { 
-    max-width: 100%;
-  }
-`
 
 export default Farms

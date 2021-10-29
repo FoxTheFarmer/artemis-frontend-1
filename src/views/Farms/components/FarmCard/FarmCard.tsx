@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import styled, { keyframes } from 'styled-components'
-import { Flex, Skeleton, LinkExternal, Card } from '@pancakeswap-libs/uikit'
+import { Flex } from '@pancakeswap-libs/uikit'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { PoolCategory, QuoteToken } from 'config/constants/types'
-import { FaClock, FaFire, FaFlask, FaGhost, FaHistory, FaInfinity, FaLock, FaMountain, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
+import { FaArrowRight, FaGhost, FaInfinity, FaPlus, FaPlusCircle } from 'react-icons/fa'
+import styled from 'styled-components'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -19,48 +19,10 @@ export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
 }
 
-const RainbowLight = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-`
-
-const StyledCardAccent = styled.div`
-  background: linear-gradient(45deg,
-  rgba(255, 0, 0, 1) 0%,
-  rgba(255, 154, 0, 1) 10%,
-  rgba(208, 222, 33, 1) 20%,
-  rgba(79, 220, 74, 1) 30%,
-  rgba(63, 218, 216, 1) 40%,
-  rgba(47, 201, 226, 1) 50%,
-  rgba(28, 127, 238, 1) 60%,
-  rgba(95, 21, 242, 1) 70%,
-  rgba(186, 12, 248, 1) 80%,
-  rgba(251, 7, 217, 1) 90%,
-  rgba(255, 0, 0, 1) 100%);
-  background-size: 300% 300%;
-  animation: ${RainbowLight} 2s linear infinite;
-  border-radius: 0.5px;
-  filter: blur(6px);
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  z-index: -1;
-`
-
 const FCard = styled.div`
   align-self: baseline;
   background: #1E2129;
   border-radius: 20px;
-  box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -70,17 +32,27 @@ const FCard = styled.div`
 `
 
 const CCARD = styled.div`
-background: #1E2129;
-border-radius: 20px;
-flex-direction: column;
-justify-content: space-around;
-padding: 15px;
-position: center;
-text-align: center;
+  background: #1E2129;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+  position: center;
+  text-align: center;
 `
 
 const DCard = styled.div`
   background: #2E3543;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  position: center;
+  text-align: center;
+`
+
+const DetailsCard = styled.div`
+  background: #1E2129;
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
@@ -100,31 +72,6 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
 `
-
-const StyledLinkExternal = styled(LinkExternal)`
-  svg {
-    padding-left: 0px;
-    height: 16px;
-    width: auto;
-    fill: ${({ theme }) => theme.colors.primary};
-  }
-
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 15px;
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  align-items: right;
-`
-
-const Divider = styled.div`
-  background-color: #4c68ef;
-  height: 2px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  width: 100%;`
 
 const Divider2 = styled.div`
   background-color: #4c68ef;
@@ -182,9 +129,17 @@ const FarmCard: React.FC<FarmCardProps> = ({
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   })}%` : '...loading' )
-  const Daily = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.div(365).toNumber().toLocaleString(undefined, {
+  const Weekly = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.div(52).toNumber().toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
+  })}%` : '...loading' )
+
+
+  const apy = new BigNumber (farmApyFixed).div(100).div(52).plus(1).pow(52).times(100)
+  
+  const APY = ( apy ? ` ${apy && apy.toNumber().toLocaleString(undefined, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   })}%` : '...loading' )
 
     
@@ -198,7 +153,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
     <FCard>
       
-      {farm.tokenSymbol === 'MIS' && <StyledCardAccent />}
+      {farm.tokenSymbol === 'MIS'}
       
 
       <DCard>
@@ -212,72 +167,66 @@ const FarmCard: React.FC<FarmCardProps> = ({
         />
 
 
-        {!removed && (
           <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <span>Returns</span>
-            <span>Daily</span>
-            <span>Duration</span>
+            <span>APY</span>
+            <span>TVL</span>
           </Flex>
-        )}
 
+
+        {!removed && (
         <Flex justifyContent='space-between'>
-          <Quote>{farmAPY}</Quote>
-          <Quote>{Daily}</Quote>
-          <Quote><FaInfinity/> Infinite</Quote>
+          <Quote>{ APY }</Quote>
+          <Quote>{totalValueFormated}</Quote>
+        </Flex> )}
+
+        <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
+            <span>7 Days</span>
+            <span>Lockup</span>
+          </Flex>
+
+          <Flex justifyContent='space-between'>
+          <Quote>{Weekly}</Quote>
+          <Quote>Infinte <FaInfinity/></Quote>
         </Flex>
+
+
       </DCard>
 
 
+ 
+      
 
-      {/*
-      <Flex justifyContent='space-between'>
-        <span><FaLock/> Lockup</span>
-        <Quote>{TranslateString(10006, '0 Hours')}</Quote>
+      <Divider2/>
+
+
+      <CCARD>
+
+      <Flex justifyContent='right'>
+        <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
       </Flex>
-      */}
+      </CCARD>
 
+      <ExpandingWrapper expanded={showExpandableSection}>
 
+      <DetailsCard>
+        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
 
-      {/* <Flex justifyContent="left">
-        <StyledLinkExternal external href={
+        <Flex justifyContent="left">
+        {/* <Link external href={
           farm.isTokenOnly ?
             `https://app.defikingdoms.com/#/marketplace?inputCurrency=${tokenAddresses[process.env.REACT_APP_CHAIN_ID]}`
             :
             `https://app.defikingdoms.com/#/add/${liquidityUrlPathParts}`
         }>
-          <span ><FaGhost/> Add Liquidity</span>
-        </StyledLinkExternal>
-      </Flex> */ }
-      
-
-      <Divider2/>
-
-    <CCARD>
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
-    </CCARD>
-
-
-      {/* <Flex justifyContent='right'>
-        <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
+          <span ><FaPlusCircle/> Add Liquidity </span>
+      </Link> */ }
       </Flex>
 
-      <ExpandingWrapper expanded={showExpandableSection}>
-        <DetailsSection
-          removed={removed}
-          isTokenOnly={farm.isTokenOnly}
-          bscScanAddress={
-            farm.isTokenOnly ?
-              `https://explorer.harmony.one/address/${farm.tokenAddresses[process.env.REACT_APP_CHAIN_ID]}`
-              :
-              `https://explorer.harmony.one/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`
-          }
-          totalValueFormated={totalValueFormated}
-          lpLabel={lpLabel}
-          quoteTokenAdresses={quoteTokenAdresses}
-          quoteTokenSymbol={quoteTokenSymbol}
-          tokenAddresses={tokenAddresses}
-        />
-      </ExpandingWrapper> */ }
+      </DetailsCard>
+
+      
+
+      </ExpandingWrapper>
     </FCard>
   )
 }

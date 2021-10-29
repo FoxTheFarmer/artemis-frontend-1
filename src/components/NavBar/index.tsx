@@ -43,7 +43,7 @@ const Price = styled.button`
   display: inline-flex;
   min-height: 18px;
   max-height: 30px;
-  max-width: 120px;
+  max-width: 107px;
   padding: 12px;
   `
 
@@ -171,8 +171,14 @@ const NavBar = (props) => {
                       <ul className="nav-tabs">
 
                       <li className="nav-tab">
+                          <Link to="/elysium" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                            <span className="dditem">Pools</span>
+                          </Link>
+                        </li>
+
+                      <li className="nav-tab">
                           <Link to="/" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Dashboard</span>
+                            <span className="dditem">Stake</span>
                           </Link>
                         </li>
 
@@ -182,11 +188,7 @@ const NavBar = (props) => {
                           </Link>
                         </li>
 
-                        <li className="nav-tab">
-                          <Link to="/elysium" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Pools</span>
-                          </Link>
-                        </li>
+
 
                         <li>
                           <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
