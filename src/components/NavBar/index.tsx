@@ -8,7 +8,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
 import {Accordion, Button, Card, useAccordionToggle} from 'react-bootstrap';
-import { FaChartLine, FaTelegramPlane, FaTwitter, FaDiscord, FaFileAlt, FaGithub, FaTicketAlt, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare } from 'react-icons/fa';
+import { FaChartLine, FaTelegramPlane, FaTwitter, FaDiscord, FaFileAlt, FaGithub, FaTicketAlt, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 import labo from 'config/constants/labo';
 
@@ -197,12 +197,17 @@ const NavBar = (props) => {
 
                         <li>
                           <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
-                            <FaTelegramPlane style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                            <FaDiscord style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li>
                           <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
                             <FaTwitter style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                        </li>
+
+                        <li>
+                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
+                            <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li className="web3li outsideMainNav">

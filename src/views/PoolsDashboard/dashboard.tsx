@@ -176,9 +176,22 @@ const MoneyWheel: React.FC = () => {
 
   return (
     <DashboardPage style={{justifyContent: 'space-between',}} >
+
+
       <DashboardCard>
+
         <div>
+        <SvgHero>
+          <object 
+          type="image/svg+xml" 
+          data="images/farmhero.svg" 
+          className="labhero" 
+          style={{maxWidth: '200px', marginLeft: '0px'}}
+          >&nbsp;</object>
+        </SvgHero> 
+
           <DCard style={{'marginTop':'00px', justifyContent: 'space-between',}}>
+            
               <FlowCol>
 
 
