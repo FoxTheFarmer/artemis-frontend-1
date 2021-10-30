@@ -121,17 +121,12 @@ export const usePriceBnbBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceMagic = (): BigNumber => {
+export const usePriceTranq = (): BigNumber => {
   const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(3)
+  const pool = usePoolFromPid(1)
   return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
 }
 
-export const usePriceLblox = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(5)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
 
 // export const fetchLaboPrice = (): BigNumber => {
 //   const query = `
@@ -166,50 +161,9 @@ export const usePriceLblox = (): BigNumber => {
 //   return new BigNumber(3);
 // }
 
-export const usePriceTranq = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const farm = useFarmFromPid(1);
-  // dispatch(fetchLaboPriceAsync());
-  // const price = useSelector((state: State) => state.farms.price)
-  // if (!labo.fetch.fetchAutomatic){
-  //   return ( !labo.fetch.fetchPriceCustom ? new BigNumber(farm.tokenPriceVsQuote) : new BigNumber(price))
-  // }
-
-  // return ( !( price ? price.isFinite : false ) ? new BigNumber(farm.tokenPriceVsQuote) : new BigNumber(price))
-  return new BigNumber(priceMis).times(farm.tokenPriceVsQuote);
-}
 
 
-export const usePriceXya = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(2)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
 
-export const usePriceTroll = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(7)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
-
-export const usePriceSonic = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(10)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
-
-export const usePriceLuna = (): BigNumber => {
-  const pid = 9 // BUSD-BNB LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
-} 
-
-export const usePriceTranqb = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePool2FromPid(1)
-  // console.log('usePriceTranqb', pool)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
 
 export const usePriceCakeBusd = (): BigNumber => {
   // const pid = 1 // CAKE-BNB LP
@@ -233,14 +187,6 @@ export const usePrices = () => {
   const misPrice = usePriceCakeBusd()
   const onePrice = usePriceBnbBusd()
   const tranqPrice = usePriceTranq()
-  const xyaPrice = usePriceXya()
-  const magicPrice = usePriceMagic()
-  const wonePrice = usePriceBnbBusd()
-  const lbloxPrice = usePriceLblox()
-  const trollPrice = usePriceTroll()
-  const lunaPrice = usePriceLuna()
-  const tranqbPrice = usePriceTranqb()
-  const sonicPrice = usePriceSonic()
 
 
   return [
@@ -248,14 +194,6 @@ export const usePrices = () => {
       {name: QuoteToken.CAKE, price: misPrice},
       {name: QuoteToken.ONE, price: onePrice},
       {name: QuoteToken.TRANQ, price: tranqPrice},
-      {name: QuoteToken.XYA, price: xyaPrice},
-      {name: QuoteToken.MAGIC, price: magicPrice},
-      {name: QuoteToken.WONE, price: wonePrice},
-      {name: QuoteToken.LBLOX, price: lbloxPrice},
-      {name: QuoteToken.TROLL, price: trollPrice},
-      {name: QuoteToken.LUNA, price: lunaPrice},
-      {name: QuoteToken.TRANQB, price: tranqbPrice},
-      {name: QuoteToken.SONIC, price: sonicPrice},
   ]
 }
 

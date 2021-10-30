@@ -188,6 +188,12 @@ const NavBar = (props) => {
                           </Link>
                         </li>
 
+                        <li className="nav-tab">
+                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                            <span className="dditem">Single Stake</span>
+                          </Link>
+                        </li>
+
 
 
                         <li>

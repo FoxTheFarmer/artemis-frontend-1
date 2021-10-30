@@ -4,7 +4,6 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
-import Pools from 'views/Pools'
 import GlobalStyle from './style/Global'
 import NavBar from './components/NavBar'
 
@@ -15,7 +14,7 @@ const Farms = lazy(() => import('./views/Farms'))
 const Pools2 = lazy(() => import('./views/Pools2'))
 // const MoneyWheel = lazy(() => import('./views/MoneyWheel'))
 // const MoneyWheel2 = lazy(() => import('./views/MoneyWheel2'))
-// const Pools = lazy(() => import('./views/Pools'))
+const Pools = lazy(() => import('./views/Pools'))
 const NotFound = lazy(() => import('./views/NotFound'))
 // const Nft = lazy(() => import('./views/Nft'))
 
@@ -59,7 +58,9 @@ const App: React.FC = () => {
             <Route path="/hades">
             <Pools2 />
             </Route>
-
+            <Route path="/pools">
+            <Pools />
+            </Route>
 
 
             <Route component={NotFound} />

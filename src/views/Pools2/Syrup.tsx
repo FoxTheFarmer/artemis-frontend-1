@@ -18,7 +18,6 @@ import {
   getTotalValueFromQuoteTokens,
   usePriceTranq,
   lookupPrice,
-  usePriceTranqb
 } from 'state/hooks'
 import { QuoteToken, Pool2Category } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -94,7 +93,7 @@ const Farm: React.FC = () => {
   const pools2 = usePools2(account)
   const bnbPriceUSD = usePriceBnbBusd()
   const prices = usePrices()
-  const priceTranq = usePriceTranqb()
+  const priceTranq = usePriceTranq()
   const block = useBlock()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
