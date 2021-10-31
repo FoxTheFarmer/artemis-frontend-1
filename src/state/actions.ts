@@ -4,8 +4,7 @@ export {
   fetchPoolsUserDataAsync,
   updateUserAllowance,
   updateUserBalance,
-  updateUserPendingReward,
-  updateUserStakedBalance,
+  updateUserStakedBalance
 } from './pools'
 export {
   fetchPools2PublicDataAsync,

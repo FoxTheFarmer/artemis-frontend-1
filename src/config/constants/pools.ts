@@ -3,18 +3,18 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 const pools: PoolConfig[] = [
   {
     sousId: 1,
-    tokenName: QuoteToken.TRANQ,
-    earnToken: QuoteToken.TRANQ,
-    quoteTokenSymbol: QuoteToken.MIS,
-    stakingTokenName: QuoteToken.MISTRANQ,
-    stakingTokenAddress: '0xfA45e64Adf9BF3caDC65b737b2B0151C750f414C',
+    tokenName: 'RVRS',
+    earnToken: 'RVRS',
+    quoteTokenSymbol: QuoteToken.RVRS,
+    stakingTokenName: QuoteToken.RVRS,
+    stakingTokenAddress: '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF',
     // this is MIS
-    quoteTokenPoolAddress: '0xd74433b187cf0ba998ad9be3486b929c76815215',
+    quoteTokenPoolAddress: '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF',
     // this is TRANQ
-    tokenPoolAddress: '0xcf1709ad76a79d5a60210f23e81ce2460542a836',
+    tokenPoolAddress: '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF',
     contractAddress: {
-      1666700000: '0xC2B1FC77e49BE0a99520EAd73da3a76AF533482D',
-      1666600000: '0xC2B1FC77e49BE0a99520EAd73da3a76AF533482D',
+      1666700000: '0xA4dD0836B276fE3Fe38B8EDf81A863FA8acd68BB',
+      1666600000: '0xA4dD0836B276fE3Fe38B8EDf81A863FA8acd68BB',
     },
     poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://www.tranquil.finance/',
@@ -23,7 +23,7 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
     startBlock: 17996500,
-    endBlock: 18903700,
+    endBlock: 190000000,
     tokenDecimals: 18,
    },
 ]

@@ -73,6 +73,7 @@ export enum QuoteToken {
   'KURO' = 'KURO',
   'SONIC' = 'SONIC',
   'MISSONIC' = 'MIS-SONIC',
+  'RVRS' = 'RVRS',
 }
 
 export enum PoolCategory {

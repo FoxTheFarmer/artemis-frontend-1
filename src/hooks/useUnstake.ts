@@ -5,7 +5,7 @@ import {
   fetchFarmUserDataAsync,
   updateUserStakedBalance,
   updateUserBalance,
-  updateUserPendingReward,
+  updateUserPendingReward2,
 } from 'state/actions'
 import { unstake, sousUnstake, sousEmegencyUnstake } from 'utils/callHelpers'
 import { useMasterchef, useSousChef, useSousChef2, useSousChefBurn } from './useContract'
@@ -29,33 +29,31 @@ const useUnstake = (pid: number) => {
 
 const SYRUPIDS = [0]
 
-export const useSousUnstake = (sousId) => {
-  const dispatch = useDispatch()
-  const { account } = useWallet()
-  const masterChefContract = useSousChef2()
-  const sousChefContract = useSousChef(sousId)
-  const isOldSyrup = SYRUPIDS.includes(sousId)
+export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
+  const dispatch = useDispatch();
+  const { account } = useWallet();
+  const masterChefContract = useMasterchef();
+  const sousChefContract = useSousChef(sousId);
 
   const handleUnstake = useCallback(
     async (amount: string) => {
       if (sousId === 0) {
-        const txHash = await sousUnstake(masterChefContract, amount, account)
-        console.info(txHash)
-      } else if (isOldSyrup) {
-        const txHash = await sousEmegencyUnstake(sousChefContract, amount, account)
-        console.info(txHash)
+        const txHash = await unstake(masterChefContract, 0, amount, account);
+        console.info(txHash);
+      } else if (enableEmergencyWithdraw) {
+        const txHash = await sousEmegencyUnstake(sousChefContract, amount, account);
+        console.info(txHash);
       } else {
-        const txHash = await sousUnstake(sousChefContract, amount, account)
-        console.info(txHash)
+        const txHash = await sousUnstake(sousChefContract, amount, account);
+        console.info(txHash);
       }
-      dispatch(updateUserStakedBalance(sousId, account))
-      dispatch(updateUserBalance(sousId, account))
-      dispatch(updateUserPendingReward(sousId, account))
+      dispatch(updateUserStakedBalance(sousId, account));
+      dispatch(updateUserBalance(sousId, account));
     },
-    [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId]
   )
 
-  return { onUnstake: handleUnstake }
+  return { onUnstake: handleUnstake };
 }
 
 export const useSousUnstakeBurn = (sousId) => {
@@ -79,7 +77,7 @@ export const useSousUnstakeBurn = (sousId) => {
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
-      dispatch(updateUserPendingReward(sousId, account))
+      dispatch(updateUserPendingReward2(sousId, account))
     },
     [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId],
   )

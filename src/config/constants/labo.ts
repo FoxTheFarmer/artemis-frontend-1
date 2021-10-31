@@ -8,7 +8,7 @@ const LaboUstAddr = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
 const LaboBnbAddr = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
 const LaboUstAddrV2 = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
 const LaboBnbAddrV2 = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
-const LaboAddr = '0xD74433B187Cf0ba998Ad9Be3486B929c76815215'
+const LaboAddr = '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF'
 const masterChef = '0x59C777cd749b307Be910f15c54A3116ff88f9706'
 const misWheel = '0x9F310757333e6083372d2603CFbd3B61c0F21C54'
 // testnet addresses

@@ -32,3 +32,6 @@ export const getWheel2Address = () => {
 export const getLotteryTicketAddress = () => {
   return addresses.lotteryNFT[chainId]
 }
+export const getAutoRvrsAddress = () => {
+  return addresses.autoRVRS[chainId]
+}
