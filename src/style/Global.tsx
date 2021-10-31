@@ -16,12 +16,19 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Exo', sans-serif; !important;
     font-weight: 600;
-    
+    -webkit-background-size: cover;
+
   }
 
   #root {
-    background-image: url('/images/egg/bg.svg');
+    background-image: url('/images/bg.svg');
     background-repeat: no-repeat;
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
   }
 
@@ -36,20 +43,20 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    background-color: #3D3D3D;
+    background-color: #Ffff;
   }
 
   button:hover {
-    background-color: #3D3D3D;
+    background-color: #Ffff;
   }
 
 
   button{
-    box-shadow: 0 0 0 0px #FAFAFA;
+    box-shadow: 0 0 0 0px #Ffff;
   }
 
   a{
-    color: #FAFAFA;
+    color: #Ffff;
   }
 
   a:hover{
@@ -57,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .nav-links:hover{
-    color: #FAFAFA;
+    color: #E8E8E8;
   }
 
   .nav-links.price button:hover{
@@ -65,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   svg{
-    fill: #FAFAFA;
+    fill: #Ffff;
   }
 
 

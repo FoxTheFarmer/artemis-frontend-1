@@ -52,6 +52,7 @@ const Staked = styled.div`
   max-height: 30px;
   max-width: 50px;
   padding: 20px;
+
   `
 
 const StakeAction: React.FC<FarmCardActionsProps> = (

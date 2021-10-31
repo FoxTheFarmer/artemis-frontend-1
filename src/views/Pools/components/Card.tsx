@@ -14,7 +14,6 @@ const Card = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
   -khtml-box-shadow: 5px 5px 5px#ccc;
 
   display: flex;
-  
   flex-direction: column;
   position: relative;
 `

@@ -56,6 +56,8 @@ const StyledBtn = styled.button`
   max-height: 30px;
   max-width: 120px;
   padding: 20px;
+  box-shadow: 0px 0px 10px #ffff, 0 0px 0px 0 #fff;
+
   `
 
   const LPStaked = styled.text`

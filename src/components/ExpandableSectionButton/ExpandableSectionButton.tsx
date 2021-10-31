@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap-libs/uikit'
-import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowDown, FaExpand, FaLongArrowAltDown, FaPlusCircle } from 'react-icons/fa'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
@@ -16,15 +16,19 @@ const Wrapper = styled.div`
 
 `
 
+const Text1 = styled.text`
+  font-size: 15px;
+  font-weight: 600;
+  text-shadow: 1px 1px 15px #ccc;
+`
+
 const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
   return (
     <Wrapper role="button" onClick={() => onClick()}>
 
-      <Text color="primary" bold>
-        {expanded ? 'Expand' : 'Expand  '}
-      </Text>
-      
-      <FaArrowDown style={{color:'white'}} /> 
+      <Text1>
+       {expanded ? 'Details ' : 'Details'} <FaLongArrowAltDown style={{color:'white'}}/>
+      </Text1> 
     </Wrapper>
   )
 }

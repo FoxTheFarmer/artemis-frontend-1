@@ -14,12 +14,12 @@ import CakeWalletBalance from 'views/Home/components/CakeWalletBalance'
 import CardValue from 'views/Home/components/CardValue'
 import DashboardPage from 'components/layout/DashboardPage'
 import farms from 'state/farms'
+import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory } from 'react-icons/fa';
 
 import { useTotalRewards } from 'hooks/useTickets'
 
 import useTokenBalance, { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { Link } from 'react-router-dom'
-import { FaArrowDown, FaArrowRight } from 'react-icons/fa'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { getCakeAddress } from '../../utils/addressHelpers'
 
@@ -52,18 +52,23 @@ const Test = styled.text`
 `
 
 const Stat = styled.text`
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: 0px 0px 10px #ccc;
+`
 
+const Stat2 = styled.text`
   font-size: 15px;
   font-weight: 700;
   text-shadow: 0px 0px 10px #ccc;
 `
 
-
-
 const DCard = styled.div`
   background: #2E3543;
   border-radius: 20px;
   padding: 30px;
+  box-shadow: 1px 1px 3px #fff;
+  background-image: linear-gradient(to right, #3B4557 , #2B3344);
 
 
 
@@ -79,7 +84,8 @@ const Sub = styled.p`
 
 const DashboardCard = styled.div`
   align-self: baseline;
-  background: #1E2129;
+  background-image: linear-gradient(to right, #1E2129 , #1E2129);
+
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -87,10 +93,11 @@ const DashboardCard = styled.div`
   padding: 15px;
   position: relative;
   text-align: center;
-  
 
-  border:2px solid #fff;
-  box-shadow: 1px 1px 7px #ccc;
+
+  border: 2px solid #fff;
+  box-shadow: 1px 1px 20px #ccc;
+
 `
 
 const DashCard = styled.div`
@@ -103,6 +110,8 @@ const DashCard = styled.div`
   padding: 15px;
   position: relative;
   text-align: center;
+
+
 
 `
 
@@ -225,7 +234,7 @@ const MoneyWheel: React.FC = () => {
                   </DCard> */ }
 
 
-            <DashCard style={{padding:'30px', marginLeft:'0px', marginRight:'0px'}}>
+            <DashCard style={{padding:'30px', marginLeft:'0px', marginRight:'0px',}}>
               
 
 
@@ -241,7 +250,7 @@ const MoneyWheel: React.FC = () => {
 
               <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='20px'  mt="20px"  marginBottom='6px'  >
                   <Sub>Price</Sub>
-                  <Sub>Market Cap</Sub>
+                  <Sub>Market Cap</Sub> 
               </Flex>
 
               <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='20px'    mt="15px"  marginBottom='-5px'  > 
@@ -255,10 +264,12 @@ const MoneyWheel: React.FC = () => {
                 <Sub>On Wallet</Sub>
               </Flex>
 
+            <Divider/>
+
               <DCard>
 
               <Flex justifyContent='space-between' alignItems='center' mt="-1px"  marginBottom='-1px'  > 
-                <Sub className="lightColor">Reverseum Treasury</Sub>
+                <Stat2>Reverseum Treasury</Stat2>
                 <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
               </Flex>
 
@@ -266,54 +277,51 @@ const MoneyWheel: React.FC = () => {
               <ExpandingWrapper expanded={showExpandableSection}>
                 <DetailsCard>
 
-                  <Flex justifyContent="left" mt="15px"  marginBottom='8px' >
-                    <Sub className="lightColor">Market Value</Sub>
+
+
+                  <Flex justifyContent="left" mt="30px"  marginBottom='15px' >
+                    <Stat>Total Market Value: $NaN</Stat>
                   </Flex>
                   
+                  <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
+                    <Stat><FaChartBar/> Distribution</Stat>
+                  </Flex>
+
                   <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>$10,000,000</Sub>
+                    <Sub>- %NaN</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- %NaN</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- %NaN</Sub>
                   </Flex>
 
                   <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
-                    <Sub className="lightColor">Distribution</Sub>
+                    <Stat><FaProjectDiagram/> Current Strategies</Stat>
                   </Flex>
 
                   <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 40% UST</Sub>
+                    <Sub>- %NaN</Sub>
                   </Flex>
 
                   <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 60% Liquidity</Sub>
+                    <Sub>- %NaN</Sub>
                   </Flex>
 
                   <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 10% RVRS</Sub>
+                    <Sub>- %NaN</Sub>
                   </Flex>
 
                   <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
-                    <Sub className="lightColor">Current Strategies (UST)</Sub>
+                    <Stat><FaHistory/> Updated Every 24hs*</Stat>
                   </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 20% Mirror (APY: 45%)</Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 20% Mirror (APY: 45%)</Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
-                    <Sub>- 10% Aave (APY: 5%)</Sub>
-                  </Flex>
-
-                  
-
-
 
 
                 </DetailsCard>
               </ExpandingWrapper>
-
               </DCard>
 
 
@@ -333,11 +341,21 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 const DetailsCard = styled.div`
-  background: #2E3543;
-  border-radius: 0px;
+background: rgba(0, 0, 0,0) !important;
+border-radius: 0px;
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
   position: center;
   text-align: center;
+`
+
+const Divider = styled.div`
+  background-color: #4c68ef;
+  height: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  width: 0%;
 `
