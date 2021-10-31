@@ -13,6 +13,7 @@ import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import useI18n from 'hooks/useI18n'
 import PoolsDashboard from 'views/PoolsDashboard'
+import ClaimBalance from 'views/ClaimBalance'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 
@@ -145,8 +146,13 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   return (
     <Page>
-    
-    <PoolsDashboard/>
+      
+    <FarmsFlex>
+      <PoolsDashboard/>
+      <ClaimBalance/>
+    </FarmsFlex>
+
+
 
   {/* <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
       <Alert title="" variant="warning" onClick={handleModal}>

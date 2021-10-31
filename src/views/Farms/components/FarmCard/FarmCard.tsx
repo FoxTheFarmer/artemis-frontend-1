@@ -111,7 +111,6 @@ const Quote = styled.p`
     font-weight: 100;
     margin-bottom: 0px;
     text-shadow: 1px 1px 10px #ccc;
-
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -234,6 +233,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
           <Quote>{Weekly}</Quote>
           <Quote>2%</Quote>
         </Flex>
+
 
 
       </DCard>

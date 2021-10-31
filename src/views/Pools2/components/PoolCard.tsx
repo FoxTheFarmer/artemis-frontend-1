@@ -254,6 +254,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
         <Flex justifyContent='space-between' alignItems='center' >
             <Quote3>ROI {APR}%</Quote3>
+            
           </Flex>
           <Flex justifyContent='space-between' alignItems='center' >
             <Quote3>{daysRemaining} Days</Quote3>
