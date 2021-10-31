@@ -207,7 +207,6 @@ const Farm: React.FC = () => {
 
     <PoolsDashboard/>
 
-    <ClaimBalance/>
 
    
 
