@@ -47,19 +47,16 @@ const App: React.FC = () => {
               <Home />
             </Route>
             
-            <Route path="/Elysium">
+            <Route path="/pools">
               <Farms />
             </Route>
-            
-            <Route path="/Incubator">
-              <Pools />
+
+            <Route path="/bonding">
+              <Pools2/>
             </Route>
 
-            <Route path="/hades">
-            <Pools2 />
-            </Route>
-            <Route path="/pools">
-            <Pools />
+            <Route path="/stake">
+              <Pools/>
             </Route>
 
 

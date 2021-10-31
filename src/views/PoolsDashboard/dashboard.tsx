@@ -18,98 +18,64 @@ import farms from 'state/farms'
 import { useTotalRewards } from 'hooks/useTickets'
 
 import useTokenBalance, { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { Link } from 'react-router-dom'
+import { FaArrowDown, FaArrowRight } from 'react-icons/fa'
+import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { getCakeAddress } from '../../utils/addressHelpers'
 
 const Price = styled.button`
--webkit-box-align: center;
-align-items: center;
-background-color: rgba(0, 0, 0,0) !important;
-border: 1px;
-border-style: solid !important;
-border-color: #405fb4 !important;
-border-radius: 16px;
-color: #405fb4;
-font-size: 15px;
-font-weight: 800;
-width: 100%;
-display: inline-flex;
-min-height: 21px;
-max-height: 37px;
-letter-spacing: 0.03em;
-padding: 15px;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #405fb4 !important;
+  border-radius: 16px;
+  color: #405fb4;
+  font-size: 15px;
+  font-weight: 800;
+  width: 100%;
+  display: inline-flex;
+  min-height: 21px;
+  max-height: 37px;
+  letter-spacing: 0.03em;
+  padding: 15px;
 `
 
-const Divider = styled.div`
-background-color: #FAFAFA;
-height: 3px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 30px;
-margin-bottom: 5px;
-width: 100%;
+const Test = styled.text`
+  background-color: rgba(0, 0, 0,0) !important;
+  background: rgba(0, 0, 0,0) !important;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0px 0px 10px #ccc;
+
 `
 
-const StyledFarmStakingCard = styled(Card)`
-  background-repeat: no-repeat;
-  background-position: top right;
-  border-radius: 14px;
+const Stat = styled.text`
+
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0px 0px 10px #ccc;
 `
 
-const Block = styled.div`
-  margin-bottom: 5px;
-`
+
 
 const DCard = styled.div`
   background: #2E3543;
   border-radius: 20px;
-  flex-direction: column;
-  justify-content: space-around;
   padding: 30px;
+
+
+
   position: center;
   text-align: center;
 `
-const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 12px !important;
-`
 
-const Actions = styled.div`
-  margin-top: 12px;
-`
-
-const FlowCol = styled.div`
-  display: flex;
-  flex-flow: column;
-`
-
-
-const Row = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-`
-
-const Title = styled.p`
-  font-size: 1.4em;
-  margin-bottom: 21px;
-
-`
 const Sub = styled.p`
   font-size: 0.97em;
   color: #7D7D7D;
 `
-const SvgHero = styled.div`
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 42px 12px;
 
-  @media all and (max-width: 1350px) { 
-    max-width: 100%;
-  }
-`
 
 const DashboardCard = styled.div`
   align-self: baseline;
@@ -118,11 +84,27 @@ const DashboardCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 20px;
+  padding: 15px;
   position: relative;
   text-align: center;
+  
+
+  border:2px solid #fff;
+  box-shadow: 1px 1px 7px #ccc;
 `
 
+const DashCard = styled.div`
+  align-self: baseline;
+  background: #1E2129;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+  position: relative;
+  text-align: center;
+
+`
 
   
 const MoneyWheel: React.FC = () => {
@@ -136,6 +118,7 @@ const MoneyWheel: React.FC = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
 
+  const [showExpandableSection, setShowExpandableSection] = useState(false)
 
 
 
@@ -148,10 +131,14 @@ const MoneyWheel: React.FC = () => {
 
   const cakePriceUsd = usePriceCakeBusd()
   const misPrice = usePriceCakeBusd();
+  const tokenPrice = cakePriceUsd.toNumber().toFixed(2);
 
-  const circSupply = totalSupply ? totalSupply.minus(burnedBalance).minus(100000) : new BigNumber(0);
-
+  const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
   const cakeSupply = getBalanceNumber(circSupply);
+  const circulatingMath = new BigNumber(cakeSupply).minus(5000000);
+  const circulatingRVRS = circulatingMath.toNumber().toFixed(0);
+
+  const mCap = misPrice.times(circulatingRVRS).toNumber().toFixed(0);
 
   const marketCap = ( misPrice.times(circSupply).isNaN() || ! misPrice.times(circSupply).isFinite() 
   ? new BigNumber(0) : misPrice.times(circSupply) );
@@ -175,27 +162,18 @@ const MoneyWheel: React.FC = () => {
 
 
   return (
-    <DashboardPage style={{justifyContent: 'space-between',}} >
+    <DashboardPage style={{justifyContent: 'space-between'}}>
+
 
 
       <DashboardCard>
-
         <div>
-        <SvgHero>
-          <object 
-          type="image/svg+xml" 
-          data="images/farmhero.svg" 
-          className="labhero" 
-          style={{maxWidth: '200px', marginLeft: '0px'}}
-          >&nbsp;</object>
-        </SvgHero> 
 
-          <DCard style={{'marginTop':'00px', justifyContent: 'space-between',}}>
+          {/* <DCard>
             
-              <FlowCol>
-
-
-                <div style={{'display':'inline-block', 'paddingLeft': '15px', 'lineHeight': '19px', 'marginBottom': '5px', 'marginTop': '20px'}}>
+               <FlowCol>
+                <div style={{'display':'inline-block', 'paddingLeft': '15px', 'lineHeight': '19px', 
+                'marginBottom': '5px', 'marginTop': '20px'}}>
                     <Block>
                       <CakeHarvestBalance earningsSum={earningsSum}/>
                       {account ? (
@@ -222,9 +200,6 @@ const MoneyWheel: React.FC = () => {
                     </Block>
                 </div>
 
-
-
-
                 <Actions>
                   {account ? (
                     <Button
@@ -247,33 +222,105 @@ const MoneyWheel: React.FC = () => {
 
 
               </FlowCol>
-              </DCard>
-
-              <DashboardCard style={{padding:'25px', marginLeft:'40px', marginRight:'40px'}}>
+                  </DCard> */ }
 
 
-                
-              <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='-5px'  >
-                  
-                  
-                  <CardValue value={cakePriceUsd.toNumber()} decimals={2} prefix="$" />
+            <DashCard style={{padding:'30px', marginLeft:'0px', marginRight:'0px'}}>
+              
 
-                  <Sub className="lightColor">{ !marketCap.isZero() ? <CardValue value={getBalanceNumber(marketCap)} decimals={0} prefix="$" /> : '...loading' }</Sub>
 
-                  
-                  <Sub className="lightColor">
-                  {cakeSupply && <CardValue value={cakeSupply} decimals={0} />}</Sub>
-
+            <Flex  justifyContent='left' ml='20px' alignItems='left'marginBottom='10px' mt='10px'  > 
+                <Test>{TranslateString(9299, 'Dashboard')}</Test>
               </Flex>
 
-              <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
+              <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='20px' mt="15px"  marginBottom='-5px'  > 
+                <Stat>${tokenPrice}</Stat>
+                <Stat>${mCap}</Stat>
+                 { /* <Stat>{ !marketCap.isZero() ? <CardValue value={getBalanceNumber(marketCap)} decimals={0} prefix="$" /> : '...' }</Stat> */ }
+              </Flex>
+
+              <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='20px'  mt="20px"  marginBottom='6px'  >
                   <Sub>Price</Sub>
                   <Sub>Market Cap</Sub>
-                  <Sub>Supply</Sub>
               </Flex>
 
-                
-              </DashboardCard>
+              <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='20px'    mt="15px"  marginBottom='-5px'  > 
+                <Stat>{circulatingRVRS}</Stat>
+                <Stat>{cakeBalance} RVRS</Stat>
+
+              </Flex>
+
+              <Flex justifyContent='space-between' alignItems='center'  ml='20px' mr='20px'  mt="15px"  marginBottom='20px'  >
+                <Sub>Circulating Supply</Sub>
+                <Sub>On Wallet</Sub>
+              </Flex>
+
+              <DCard>
+
+              <Flex justifyContent='space-between' alignItems='center' mt="-1px"  marginBottom='-1px'  > 
+                <Sub className="lightColor">Reverseum Treasury</Sub>
+                <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
+              </Flex>
+
+      
+              <ExpandingWrapper expanded={showExpandableSection}>
+                <DetailsCard>
+
+                  <Flex justifyContent="left" mt="15px"  marginBottom='8px' >
+                    <Sub className="lightColor">Market Value</Sub>
+                  </Flex>
+                  
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>$10,000,000</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
+                    <Sub className="lightColor">Distribution</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 40% UST</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 60% Liquidity</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 10% RVRS</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
+                    <Sub className="lightColor">Current Strategies (UST)</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 20% Mirror (APY: 45%)</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 20% Mirror (APY: 45%)</Sub>
+                  </Flex>
+
+                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' >
+                    <Sub>- 10% Aave (APY: 5%)</Sub>
+                  </Flex>
+
+                  
+
+
+
+
+                </DetailsCard>
+              </ExpandingWrapper>
+
+              </DCard>
+
+
+
+
+
+            </DashCard>
         </div>
         </DashboardCard>
     </DashboardPage>
@@ -281,4 +328,16 @@ const MoneyWheel: React.FC = () => {
 }
 export default MoneyWheel
 
-
+const ExpandingWrapper = styled.div<{ expanded: boolean }>`
+  height: ${(props) => (props.expanded ? '100%' : '0px')};
+  overflow: hidden;
+`
+const DetailsCard = styled.div`
+  background: #2E3543;
+  border-radius: 0px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  position: center;
+  text-align: center;
+`

@@ -23,10 +23,12 @@ import { QuoteToken, Pool2Category } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { FaQuestionCircle , FaUserCheck, FaLock, FaHistory, FaExchangeAlt, FaWater, FaProjectDiagram, FaFireAlt, FaBurn } from 'react-icons/fa'
+import PoolsDashboard from 'views/PoolsDashboard'
 import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Hero2 from './components/Hero'
+
 
 const Feature = styled.div`
   display: flex;
@@ -202,6 +204,7 @@ const Farm: React.FC = () => {
 
         </Wrapper> */ }
 
+    <PoolsDashboard/>
 
       <FlexLayout>
         <Route exact path={`${path}`}>

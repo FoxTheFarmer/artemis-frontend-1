@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import { BLOCKS_PER_YEAR } from 'config'
-import FlexLayout from 'components/layout/Flex'
+import FarmsFlex from 'components/layout/FarmsFlex'
 import Page from 'components/layout/Page'
 import {getTotalValueFromQuoteTokens, useFarms, usePriceBnbBusd, usePriceCakeBusd, usePrices} from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
@@ -45,6 +45,25 @@ const Feature = styled.div`
       margin-left: 15px;
     }
   
+`
+
+
+const CardBG = styled.div`
+  align-self: baseline;
+  background: #1E2129;
+  border-radius:  0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px;
+  position: relative;
+  text-align: center;
+
+  border:0px solid #fff;
+  box-shadow: 5px 5px 5px #ccc;
+  -moz-box-shadow: 5px 5px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+  -khtml-box-shadow: 5px 5px 5px#ccc;
 `
 
 
@@ -139,22 +158,22 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
         <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
 
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            {stakedOnly ? farmsList(stakedOnlyFarms, false) : farmsList(activeFarms, false)}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsList(inactiveFarms, true)}
-          </Route>
-        </FlexLayout>
-        
-        <FlexLayout>
 
-        <Feature >
-          <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
-        </Feature>
+          <FarmsFlex>
+            <Route exact path={`${path}`}>
+              {stakedOnly ? farmsList(stakedOnlyFarms, false) : farmsList(activeFarms, false)}
+            </Route>
+            <Route exact path={`${path}/history`}>
+              {farmsList(inactiveFarms, true)}
+            </Route>
+          </FarmsFlex>
           
-        </FlexLayout>
+          <FarmsFlex>
+            <Feature >
+              <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
+            </Feature>
+          </FarmsFlex>
+
 
       </div>
       

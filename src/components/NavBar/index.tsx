@@ -8,7 +8,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
 import {Accordion, Button, Card, useAccordionToggle} from 'react-bootstrap';
-import { FaChartLine, FaTelegramPlane, FaTwitter, FaDiscord, FaFileAlt, FaGithub, FaTicketAlt, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText } from 'react-icons/fa';
+import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 import labo from 'config/constants/labo';
 
@@ -157,7 +157,7 @@ const NavBar = (props) => {
               <object 
               type="image/svg+xml" 
               data="/images/banner.svg" 
-              width="200px" style={{'marginTop': '10px', 'marginBottom': '10px', 'marginLeft': '20px'}}>&nbsp;</object>
+              width="250px" style={{'marginTop': '10px', 'marginBottom': '10px', 'marginLeft': '20px'}}>&nbsp;</object>
 
                 <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
                 <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>
@@ -171,50 +171,43 @@ const NavBar = (props) => {
                       <ul className="nav-tabs">
 
                       <li className="nav-tab">
-                          <Link to="/elysium" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Pools</span>
                           </Link>
                         </li>
 
                       <li className="nav-tab">
-                          <Link to="/" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Stake</span>
                           </Link>
                         </li>
 
                         <li className="nav-tab">
-                          <Link to="/hades" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Bond</span>
                           </Link>
                         </li>
 
-                        <li className="nav-tab">
-                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Single Stake</span>
-                          </Link>
-                        </li>
-
-
-
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
-                            <FaGithub style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                          <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/" className="nav-links">
+                            <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
+                            <FaBook style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                        </li>
+
+                        <li>
+                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
                             <FaDiscord style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
                             <FaTwitter style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
-                        <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
-                            <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
-                        </li>
 
                         <li className="web3li outsideMainNav">
                           <Link to="/" className="nav-links connect">
@@ -223,7 +216,7 @@ const NavBar = (props) => {
                               <UnlockButton style={{
                                 marginLeft: '35px',
                                 marginTop: '-4px',
-                                width: '73%',
+                                width: '70%',
                               }}>Connect</UnlockButton>}
                           </Link>
                         </li>

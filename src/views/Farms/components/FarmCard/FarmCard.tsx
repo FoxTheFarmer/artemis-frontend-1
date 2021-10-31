@@ -29,6 +29,10 @@ const FCard = styled.div`
   padding: 20px;
   position: relative;
   text-align: center;
+
+  border:0px solid #fff;
+  box-shadow: 1px 1px 7px #ccc;
+
 `
 
 const CCARD = styled.div`
@@ -36,7 +40,7 @@ const CCARD = styled.div`
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
-  padding: 15px;
+  padding: 10px;
   position: center;
   text-align: center;
 `
@@ -46,9 +50,11 @@ const DCard = styled.div`
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
-  padding: 30px;
+  padding: 25px;
   position: center;
   text-align: center;
+
+
 `
 
 const DetailsCard = styled.div`
@@ -56,7 +62,7 @@ const DetailsCard = styled.div`
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
-  padding: 30px;
+  padding: 20px;
   position: center;
   text-align: center;
 `
@@ -169,7 +175,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
           <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
             <span>APY</span>
-            <span>TVL</span>
+            <span>Value Locked</span>
           </Flex>
 
 
@@ -180,8 +186,8 @@ const FarmCard: React.FC<FarmCardProps> = ({
         </Flex> )}
 
         <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <span>7 Days</span>
-            <span>Lockup</span>
+            <span>7 Day ROI</span>
+            <span>Withdrawal Fee</span>
           </Flex>
 
           <Flex justifyContent='space-between'>

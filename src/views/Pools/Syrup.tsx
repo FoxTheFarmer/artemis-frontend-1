@@ -23,10 +23,9 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { FaQuestionCircle , FaUserCheck, FaLock, FaHistory, FaExchangeAlt, FaWater, FaProjectDiagram } from 'react-icons/fa'
+import FlexStaking from 'components/layout/FlexStaking'
 import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
-import PoolTabButtons from './components/PoolTabButtons'
-import Hero2 from './components/Hero'
 
 const Title = styled.p`
   font-size: 1.1em;
@@ -101,14 +100,13 @@ const GuideLink = styled.span`
   color: #0073ff;
 `
 const Divider = styled.div`
-background-color: #4c68ef;
-height: 3px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 25px;
-margin-bottom: 25px;
-width: 20%;
-
+  background-color: #4c68ef;
+  height: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 20%;
 `
 
 const SvgHero = styled.div`
@@ -183,21 +181,7 @@ const Farm: React.FC = () => {
   return (
     <Page>
       
-      <SvgHero>
-        <object 
-        type="image/svg+xml" 
-        data="images/incubator.svg"
-        className="labhero" 
-        style={{maxWidth: '600px', marginLeft: '0px'}}
-        >&nbsp;</object>
-      </SvgHero>
-
-
-
-
-
-      <Wrapper>
-
+      {/* <Wrapper>
         <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
 
             <ButtonMenuItem as={Link} to={`${url}`} >
@@ -209,20 +193,10 @@ const Farm: React.FC = () => {
             </ButtonMenuItem>
 
         </ButtonMenu>
-
-      </Wrapper>
+      </Wrapper> */ }
     
-      <ActionsWrapper>
 
-        <Blablabla >
-          <FaQuestionCircle/> Learn more about the Incubator <a target="_blanK" rel="noreferrer" href="https://artemis-protocol.gitbook.io/artemis/the-protocol/launchpad-1/incubator"><GuideLink>here</GuideLink></a>
-        </Blablabla>
-
-
-        
-        </ActionsWrapper>
-
-      <FlexLayout>
+      <FlexStaking>
         <Route exact path={`${path}`}>
           <>
             {orderBy(openPools, ['sortOrder']).map((pool) => (
@@ -236,15 +210,11 @@ const Farm: React.FC = () => {
             <PoolCard key={pool.sousId} pool={pool} />
           ))}
         </Route>
-      </FlexLayout>
+      </FlexStaking>
 
       <FlexLayout>
           <Feature >
             <FaProjectDiagram /><br /> Artemis Incubator
-
-
-
-
           </Feature>
       </FlexLayout>
           

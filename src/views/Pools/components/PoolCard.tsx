@@ -149,24 +149,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
       <div style={{padding: '34px'}}>
 
-          <Image src={`/images/Inc/${earnToken}.png`} width={300} height={140}>w</Image>
-
-        <Divider2/>
-{/*
-        <Flex justifyContent='space-between'>
-          <span><FaFlask/> Earn</span>
-          <Quote>{tokenName}</Quote>
-</Flex> */ } 
-        
-
-        {/*
-        <Flex justifyContent='space-between' marginTop='6px'>
-          <span><FaLock/> Lockup</span>
-          <Quote>{TranslateString(10006, '0 Hours')}</Quote>
-        </Flex> 
-        */}
-
-
 
         <Flex justifyContent='space-between' marginTop='6px'>
           <span><FaTractor/> APR</span>

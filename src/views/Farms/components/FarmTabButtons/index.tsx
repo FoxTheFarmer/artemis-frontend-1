@@ -49,9 +49,9 @@ const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
             marginRight: '10px',
             marginTop: '0px',
             marginLeft: '10px',
-            width: '80%',
+            width: '1180%',
           }} >
-            {TranslateString(698, 'Active')}
+            {TranslateString(6928, 'Active Pools')}
           </BtnMenu>
           <BtnMenu as={Link} 
           to={`${url}/history`}
@@ -59,7 +59,7 @@ const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
             marginRight: '0px',
             marginTop: '0px',
             width: '80%',}} >
-            {TranslateString(700, 'Inactive')}
+            {TranslateString(7200, 'Past')}
           </BtnMenu>
       </ActionsWrapper>
 
