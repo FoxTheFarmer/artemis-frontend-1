@@ -3,7 +3,7 @@ import { Route, useRouteMatch, Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Alert, ButtonMenu, ButtonMenuItem, Heading, LinkExternal } from '@pancakeswap-libs/uikit'
+import { Alert, ButtonMenu, ButtonMenuItem, Card, Flex, Heading, LinkExternal } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -206,6 +206,8 @@ const Farm: React.FC = () => {
 
     <PoolsDashboard/>
 
+   
+
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>
@@ -222,11 +224,6 @@ const Farm: React.FC = () => {
         </Route>
       </FlexLayout>
 
-      <FlexLayout>
-          <Feature >
-            LP Deposits cannot be withdrawn.
-          </Feature>
-      </FlexLayout>
           
     </Page>
   )

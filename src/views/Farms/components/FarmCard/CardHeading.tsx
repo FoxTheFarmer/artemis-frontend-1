@@ -42,11 +42,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <object type="image/svg+xml" data="/images/farms/mis-one.svg" width="40px">&nbsp;</object>
 
       <Flex flexDirection="column" alignItems="flex-end">
-        <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/'>{lpLabel} <FaLongArrowAltRight/></Link>
+        <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/'>{lpLabel}</Link>
       </Flex>
 
       <Flex flexDirection="column" alignItems="flex-end">
-        <Link style={{'color': '#CBCBCB', 'fontSize': '15px'}} href='https://explorer.harmony.one/'><FaGhost/></Link>
+        <Link style={{'color': '#CBCBCB', 'fontSize': '15px'}} href='https://game.defikingdoms.com/#/marketplace'><FaGhost/></Link>
       </Flex>
 
 
