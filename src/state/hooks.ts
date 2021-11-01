@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import {
   fetchFarmsPublicDataAsync,
-  fetchPoolsPublicDataAsync,
   fetchPools2PublicDataAsync,
   fetchPoolsUserDataAsync,
   fetchPools2UserDataAsync
@@ -21,8 +20,6 @@ export const useFetchPublicData = () => {
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
-    dispatch(fetchPoolsPublicDataAsync())
-    dispatch(fetchPools2PublicDataAsync())
   }, [dispatch, slowRefresh])
 }
 
