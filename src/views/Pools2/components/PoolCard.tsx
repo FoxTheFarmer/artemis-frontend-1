@@ -15,7 +15,7 @@ import { useSousHarvestBurn } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import { FaBurn, FaClock, FaCube, FaCubes, FaFire, FaFireAlt, FaFlask, FaGhost, FaLightbulb, FaLock, FaLongArrowAltRight, FaMonero, FaMountain, FaScroll, FaSeedling, FaTractor, FaTruck } from 'react-icons/fa'
+import { FaAngleRight, FaBook, FaBurn, FaClock, FaCube, FaCubes, FaFire, FaFireAlt, FaFlask, FaGhost, FaLightbulb, FaLock, FaLongArrowAltRight, FaMonero, FaMountain, FaScroll, FaSeedling, FaTractor, FaTruck } from 'react-icons/fa'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -74,7 +74,7 @@ background: #1E2129;
 border-radius: 10px;
 flex-direction: column;
 justify-content: space-around;
-padding: 10px;
+padding: 25px;
 position: center;
 text-align: center;
 `
@@ -92,6 +92,48 @@ const StyledBtn = styled.button`
   border: 1px;
   border-style: solid !important;
   border-color: #2E3543 !important;
+  border-radius: 8px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  margin-top: 18px;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 128px;
+  padding: 20px;
+  box-shadow: 1px 1px 10px #ccc;
+
+  `
+  const StyledClaim = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: #2E3543 !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #2E3543 !important;
+  border-radius: 8px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  margin-top: 18px;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 128px;
+  padding: 20px;
+  `
+
+  const ClaimBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 18px;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
   border-radius: 10px;
   color: #ffff;
   font-size: 15px;
@@ -100,9 +142,10 @@ const StyledBtn = styled.button`
   display: inline-flex;
   min-height: 18px;
   max-height: 30px;
-  max-width: 120px;
+  max-width: 80px;
   padding: 20px;
   `
+
 
   const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
@@ -262,84 +305,92 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
           {/* <Flex justifyContent='space-between'>
           <Quote>${TVL}</Quote>
-  </Flex> */ }
-
-
-
-
+          </Flex> */ }
 
         <Flex justifyContent='right'>
           <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
         </Flex>
+
         </Wrapper>
       </DCard>
+
+
         <ExpandingWrapper expanded={showExpandableSection}>
-              <CCARD>
-              <Flex justifyContent='space-between' marginTop='25px'>
-                <Quote> Your Burned LP</Quote>
-                <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
-              </Flex>
+          <CCARD>
 
-              <Flex marginTop='0px' justifyContent='space-between'>
-                <span> Pending Rewards</span>
-                <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+          <Flex justifyContent='space-between' marginTop='20px'>
+              <Quote> Total Value Bonded</Quote>
+              <Quote> ${TVL}</Quote>
+            </Flex>
 
-                {sousId === 0 && account && harvest && (
-                    <HarvestButton
-                      disabled={!earnings.toNumber() || pendingTx}
-                      text={pendingTx ? TranslateString(999, 'Compounding') : TranslateString(999, 'Compound')}
-                      onClick={onPresentCompound}/>)} 
-              </Flex>
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote> Estimated ROI ({daysRemaining} Days)</Quote>
+              <Quote> ${TVL}</Quote>
+            </Flex>
 
-              <StyledCardActions  >
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote> Rewards End In</Quote>
+              <Quote> {daysRemaining} Days</Quote>
+            </Flex>
+
+
+            <Flex justifyContent='space-between' marginTop='25px'>
+              <Quote> Your Bonded Assets</Quote>
+              <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
+            </Flex>
+
+            <Flex marginTop='0px' justifyContent='space-between'>
+              <Quote> Claimable Rewards</Quote>
+              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+
+              {sousId === 0 && account && harvest && (
+              <HarvestButton
+              disabled={!earnings.toNumber() || pendingTx}
+              text={pendingTx ? TranslateString(999, 'Compounding') : TranslateString(999, 'Compound')}
+              onClick={onPresentCompound}/>)} 
+            </Flex>
+
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote><FaAngleRight/> Once Bonded, assets cannnot be recovered</Quote>
+            </Flex>
+
+
+
+            <StyledCardActions >
                 
-                {!account && <UnlockButton />}
-                {account &&
-                  (needsApproval && !isOldSyrup ? (
-                    <div style={{ flex: 1 }}>
-                      <StyledBtn disabled={isFinished || isDepositFinished} onClick={handleApprove}  >
-                        Approve
-                      </StyledBtn>
-                    </div>
-                  ) : (
-                    <>
+              {!account && <UnlockButton />}
+              {account && (needsApproval && !isOldSyrup ? (
 
-                      <StyledActionSpacer />
+                <div style={{ flex: 1 }}>
+                  <StyledBtn disabled={isFinished || isDepositFinished} onClick={handleApprove}  >
+                    Approve
+                  </StyledBtn>
+                </div>
 
-                      {!isOldSyrup && (
-                      <StyledBtn disabled={isFinished || isDepositFinished}  onClick={onPresentDeposit}>
-                        <FaBurn color="white" /> Deposit
-                      </StyledBtn>)}
-                    </>
-                  ))}
+                ) : ( <>
 
-              <div style={{ marginRight:'30px', marginLeft:'10px'}}>
-                {account && harvest && !isOldSyrup && (
-                  <StyledBtn
+                <StyledActionSpacer/>
+
+                {!isOldSyrup && (
+                <StyledBtn disabled={isFinished || isDepositFinished}  onClick={onPresentDeposit}>
+                  Bond Assets
+                </StyledBtn>)}</>))}
+
+                <div style={{ marginRight:'30px', marginLeft:'10px'}}>
+                  {account && harvest && !isOldSyrup && (
+                  <ClaimBtn
                     disabled={!earnings.toNumber() || pendingTx}
                     onClick={async () => {
                       setPendingTx(true)
                       await onReward()
                       setPendingTx(false)
-                    }}
-
-                  >
-                    Claim
-                  </StyledBtn>
-                )}
-              </div>
+                    }}>Claim
+                  </ClaimBtn>)}
+                </div>
               </StyledCardActions>
-
-
             </CCARD>
         </ExpandingWrapper>
-
-      
-
-
-
-
-
 
 
         {/* {!isOldSyrup ? (

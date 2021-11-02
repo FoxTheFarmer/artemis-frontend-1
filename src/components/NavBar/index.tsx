@@ -109,10 +109,10 @@ const NavBar = (props) => {
            </li>
 
             <li>
-                                <a target="_blanK" rel="noreferrer" href="https://artemischarts.northeurope.cloudapp.azure.com/" className="nav-links">
-                                <FaChartBar />  <span className="dditem">Charts</span>
-                                </a>
-                              </li>
+               <a target="_blanK" rel="noreferrer" href="https://artemischarts.northeurope.cloudapp.azure.com/" className="nav-links">
+                 <FaChartBar />  <span className="dditem">Charts</span>
+                   </a>
+                  </li>
                 <li>
                   <a target="_blanK" rel="noreferrer" href="https://artemis-protocol.gitbook.io/artemis/" className="nav-links">
                     <FaBook /> <span className="dditem">Docs</span>
@@ -154,10 +154,11 @@ const NavBar = (props) => {
       <header>
           <div className="nav-wrapper">
               <nav>
+
               <object 
               type="image/svg+xml" 
               data="/images/banner.svg" 
-              width="250px" style={{'marginTop': '10px', 'marginBottom': '10px', 'marginLeft': '20px'}}>&nbsp;</object>
+              width="250px" style={{'marginTop': '60px', 'marginBottom': '10px', 'marginLeft': '10px'}}>&nbsp;</object>
 
                 <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
                 <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>

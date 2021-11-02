@@ -5,6 +5,27 @@ import ModalActions from 'components/ModalActions'
 import TokenInput from 'components/TokenInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import styled from 'styled-components'
+
+
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 100px;
+  padding: 25px;
+  `
 
 interface DepositModalProps {
   max: BigNumber
@@ -36,7 +57,11 @@ const DepositModal: React.FC<DepositModalProps> = (
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`${TranslateString(316, 'Deposit')} ${tokenName} Tokens`} onDismiss={onDismiss}>
+
+    <Modal 
+    title={`${TranslateString(3120, 'Deposit')} ${tokenName}`} 
+    onDismiss={onDismiss}>
+      
       <TokenInput
         value={val}
         valueUsd={valueUsd}
@@ -46,35 +71,27 @@ const DepositModal: React.FC<DepositModalProps> = (
         symbol={tokenName}
         depositFeeBP={depositFeeBP}
       />
+
       <ModalActions>
-        <Button style={{
-          'borderRadius': '5px',
-          'color': "white !important",
-          'border': "0 !important"
-          }}
-          
-          onClick={
-            onDismiss
-            }>
-          {
-          TranslateString(462, 'Cancel')
-          }
-        </Button>
-        <Button
-          style={{
-            'borderRadius': '5px'
-          }}
+
+        <StyledBtn 
+          style={{justifyContent:"center" }}
+          onClick={onDismiss}>{TranslateString(462, 'Cancel')}
+        </StyledBtn>
+
+        <StyledBtn 
+          style={{justifyContent:"center" }}
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(val)
             setPendingTx(false)
-            onDismiss()
-          }}
-        >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
-        </Button>
-      </ModalActions>
+            onDismiss()}}>
+            {pendingTx ? TranslateString(4818, 'Pending') : TranslateString(4624, 'Deposit')}
+          </StyledBtn>
+
+        </ModalActions>
+
     </Modal>
   )
 }

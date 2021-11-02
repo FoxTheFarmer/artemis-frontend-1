@@ -35,10 +35,10 @@ const Balance: React.FC<BalanceProps> = ({ value, fontSize, color, decimals, isD
 }
 
 Balance.defaultProps = {
-  fontSize: '32px',
+  fontSize: '16px',
   isDisabled: false,
   color: 'text',
-  decimals: 3,
+  decimals: 2,
 }
 
 export default Balance

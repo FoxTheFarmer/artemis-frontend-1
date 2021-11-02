@@ -48,6 +48,18 @@ const Feature = styled.div`
   
 `
 
+const Flexed = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  & > * {
+    min-width: 450px;
+    max-width: 40%;
+    margin-bottom: 20px;
+  }
+`
+
 
 const CardBG = styled.div`
   align-self: baseline;
@@ -147,10 +159,13 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   return (
     <Page>
       
-    <FarmsFlex>
+    <Flexed>
       <PoolsDashboard/>
-      <ClaimBalance/>
-    </FarmsFlex>
+        
+    </Flexed>
+
+
+
 
 
 
@@ -174,11 +189,11 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
             </Route>
           </FarmsFlex>
           
-          <FarmsFlex>
+          {/* <FarmsFlex>
             <Feature >
               <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
             </Feature>
-          </FarmsFlex>
+          </FarmsFlex> */ }
 
 
       </div>

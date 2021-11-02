@@ -142,19 +142,20 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
   }
 
   return (
-    <Action>
+    <Action  >
 
       <HarvestAction earnings={earnings} pid={pid} />
 
 
-      {!account ? <UnlockButton
+      {!account ? <UnlockButton justifyContent="end"
       style={{
         border: '1px',
+        justifyContent: "center",
         color: '#8299dd !important',
         borderRadius: '10px',
         fontSize: '15px',
         fontWeight: '200',
-        width: '100%',
+        width: '35%',
         display: 'inline-flex',
         height: '44px',
         padding: '20px',

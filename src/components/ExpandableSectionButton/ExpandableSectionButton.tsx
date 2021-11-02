@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap-libs/uikit'
-import { FaArrowDown, FaExpand, FaLongArrowAltDown, FaPlusCircle } from 'react-icons/fa'
+import { FaAngleDown, FaArrowDown, FaExpand, FaLongArrowAltDown, FaPlusCircle } from 'react-icons/fa'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
@@ -27,7 +27,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
     <Wrapper role="button" onClick={() => onClick()}>
 
       <Text1>
-       {expanded ? 'Details ' : 'Details'} <FaLongArrowAltDown style={{color:'white'}}/>
+       {expanded ? 'Details ' : 'Details'} <FaAngleDown style={{color:'white'}}/>
       </Text1> 
     </Wrapper>
   )

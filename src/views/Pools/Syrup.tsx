@@ -37,23 +37,6 @@ const Title = styled.p`
 
 `
 
-const Features = styled.div`
-  display: flex;
-  flex-flow: row;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-  @media screen and (max-width: 680px){
-    flex-flow: column;
-  }
-`
-
-const Sub = styled.p`
-  font-size: 1em;
-  color: #6E4EED;
-`
-
 const Feature = styled.div`
   display: flex;
   flex-flow: column;
@@ -221,21 +204,5 @@ const Farm: React.FC = () => {
     </Page>
   )
 }
-
-const Hero = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  padding-bottom: 33px;
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  margin-bottom: 25px;
-  
-`
 
 export default Farm

@@ -45,8 +45,8 @@ padding: 47px;
 position: relative;
 text-align: center;
 margin-top: 19px;
-margin-left: -40px;
-margin-right: 40px;
+margin-left: 0px;
+margin-right: 00px;
 
 
 border: 2px solid #fff;
