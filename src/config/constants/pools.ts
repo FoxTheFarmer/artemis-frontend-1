@@ -13,8 +13,8 @@ const pools: PoolConfig[] = [
     // this is TRANQ
     tokenPoolAddress: '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF',
     contractAddress: {
-      1666700000: '0x4F62d18e697e8CdDeEE5eCc317aDCf2C50A451a2',
-      1666600000: '0x4F62d18e697e8CdDeEE5eCc317aDCf2C50A451a2',
+      1666700000: '0x19f3079b4c6706edc688A3e3EF713d793c5fd876',
+      1666600000: '0x19f3079b4c6706edc688A3e3EF713d793c5fd876',
     },
     poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://www.tranquil.finance/',
