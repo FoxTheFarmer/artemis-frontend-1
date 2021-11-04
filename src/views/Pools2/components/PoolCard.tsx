@@ -15,14 +15,13 @@ import { useSousHarvestBurn } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import { FaAngleRight, FaBook, FaBurn, FaClock, FaCube, FaCubes, FaFire, FaFireAlt, FaFlask, FaGhost, FaLightbulb, FaLock, FaLongArrowAltRight, FaMonero, FaMountain, FaScroll, FaSeedling, FaTractor, FaTruck } from 'react-icons/fa'
+import { FaAngleRight } from 'react-icons/fa'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import Container from 'components/layout/Container'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import CompoundModal from './CompoundModal'
-import CardTitle from './CardTitle'
 import Card from './Card'
-import OldSyrupTitle from './OldSyrupTitle'
 import HarvestButton from './HarvestButton'
 import CardFooter from './CardFooter'
 
@@ -35,26 +34,6 @@ interface PoolWithApy extends Pool2 {
 interface HarvestProps {
   pool2: PoolWithApy
 }
-
-const Divider = styled.div`
-background-color: #4c68ef;
-height: 2px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 20px;
-margin-bottom: 5px;
-width: 100%;
-`
-
-const Divider2 = styled.div`
-background-color: #4c68ef;
-height: 2px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 20px;
-margin-bottom: 5px;
-width: 0%;
-`
 
 const DCard = styled.div`
 background-image: linear-gradient(to right, #2E3646, #3B4557 , #2B3344);
@@ -166,6 +145,24 @@ const Quote3 = styled.p`
     text-shadow: 1px 1px 10px #ccc;
 `
 
+const DashboardPage2 = styled(Container)`
+  min-height: calc(1vh - 64px);
+  padding-top: 16px;
+  padding-bottom: 6px;
+  padding: 5px;
+  max-width: 770px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-top: 21px;
+    padding-bottom: 32px;
+  }
+`
+
 
 const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const {
@@ -265,6 +262,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
 
   return (
+
+    <DashboardPage2>
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
       {sousId === 0 && <PoolFinishedSash />}
 
@@ -436,8 +435,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
         tokenPoolAddress={tokenPoolAddress}
         quoteTokenPoolAddress={quoteTokenPoolAddress}
 /> */}
-    </Card>
+    </Card>  </DashboardPage2>
+
   )
+
 }
 
 const PoolFinishedSash = styled.div`
