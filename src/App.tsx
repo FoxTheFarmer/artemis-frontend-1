@@ -44,7 +44,7 @@ const App: React.FC = () => {
         <Suspense fallback>
           <Switch>
             <Route path="/" exact>
-              <Home />
+            <Farms />
             </Route>
             
             <Route path="/pools">

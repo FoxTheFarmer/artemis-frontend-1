@@ -2,6 +2,8 @@ import React, { useEffect, useCallback, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { Flex } from '@pancakeswap-libs/uikit'
+
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -12,7 +14,8 @@ import {getTotalValueFromQuoteTokens, useFarms, usePriceBnbBusd, usePriceCakeBus
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import useI18n from 'hooks/useI18n'
-import PoolsDashboard from 'views/PoolsDashboard'
+import PoolsDashboard1 from 'views/PoolsDashboard1'
+
 import ClaimBalance from 'views/ClaimBalance'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
@@ -22,6 +25,37 @@ export interface FarmsProps{
   tokenMode?: boolean
 }
 
+const Flexed2 = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  & > * {
+
+    width: 100%;
+    margin: 0 6px;
+    margin-bottom: 18px;
+  }
+`
+
+const Test = styled.text`
+  background-color: rgba(0, 0, 0,0) !important;
+  background: rgba(0, 0, 0,0) !important;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0px 0px 10px #ccc;
+
+`
+
+const Stat = styled.text`
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: 0px 0px 10px #ccc;
+`
+
+const Sub = styled.p`
+  font-size: 0.97em;
+  color: #7D7D7D;
+`
 
 const Feature = styled.div`
   display: flex;
@@ -63,20 +97,23 @@ const Flexed = styled.div`
 
 const CardBG = styled.div`
   align-self: baseline;
-  background: #1E2129;
-  border-radius:  0px;
+  background-image: linear-gradient(to right, #2E3646, #3B4557 , #2B3344);
+  border-radius:  20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: ce;
   justify-content: space-around;
   padding: 50px;
   position: relative;
   text-align: center;
+  max-width: 750px;
+  min-height: 180px;
 
-  border:0px solid #fff;
-  box-shadow: 5px 5px 5px #ccc;
-  -moz-box-shadow: 5px 5px 5px #ccc;
-  -webkit-box-shadow: 5px 5px 5px #ccc;
-  -khtml-box-shadow: 5px 5px 5px#ccc;
+  margin-bottom: 50px;
+  margin-top: 25px;
+
+  border:2px solid #fff;
+  box-shadow: 0px 0px 20px #ccc;
+
 `
 
 
@@ -158,10 +195,19 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   return (
     <Page>
-      
+
+    <Flexed2>
+
+        <PoolsDashboard1/>
+
+
+    </Flexed2>
+    
+        {/*
     <Flexed>
       <PoolsDashboard/>
-        
+              <CardBG>
+
     </Flexed>
 
 
@@ -169,7 +215,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
 
 
-  {/* <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
+ <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
       <Alert title="" variant="warning" onClick={handleModal}>
         <p>Artemis Earn rewards will begin on <a target="_blank" rel="noreferrer" style={{"color": "#0073ff"}} href="https://explorer.harmony.one/block/17996500">October 9th.</a></p>
       </Alert>
@@ -177,7 +223,6 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
       <div>
 
-        <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
 
 
           <FarmsFlex>
@@ -194,6 +239,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
               <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
             </Feature>
           </FarmsFlex> */ }
+                  <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
+
 
 
       </div>

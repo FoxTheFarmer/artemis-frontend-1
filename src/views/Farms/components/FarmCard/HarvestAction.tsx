@@ -6,8 +6,11 @@ import labo from 'config/constants/labo'
 import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
 import styled from 'styled-components'
+import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle } from 'react-icons/fa';
 import useStake from '../../../../hooks/useStake'
 import {usePriceCakeBusd} from "../../../../state/hooks";
+
+
 
 interface FarmCardActionsProps {
   earnings?: BigNumber
@@ -119,14 +122,8 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           onClick={async () => {
             setPendingTx(true)
             await onReward()
-            setPendingTx(false)
-          }}
-          style={{
-
-            'color': 'white'
-          }}
-        >
-          {TranslateString(999, 'Claim')}
+            setPendingTx(false)}}
+          style={{'color': 'white'}}>Claim  &nbsp;<FaHandHoldingUsd/>
         </StyledBtn>
       </BalanceAndCompound>
     </Flex>

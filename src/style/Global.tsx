@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    background-image: url('/images/bg.svg');
+    background-image: url('/images/bg.png');
     background-repeat: no-repeat;
 
     height: 100%;

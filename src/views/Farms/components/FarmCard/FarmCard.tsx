@@ -59,7 +59,7 @@ const StyledCardAccent = styled.div`
 const FCard = styled.div`
   align-self: baseline;
   background: #1E2129;
-  border-radius: 20px;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -107,10 +107,19 @@ const DetailsCard = styled.div`
 
 
 const Quote = styled.p`
-    font-size: 15px;
-    font-weight: 100;
+    font-size: 14px;
+    font-weight: 600;
     margin-bottom: 0px;
     text-shadow: 1px 1px 10px #ccc;
+`
+
+
+const Text01 = styled.p`
+    color: #7F8997;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    text-shadow: 0px 0px 0px #4E5C6D;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -213,8 +222,8 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
 
           <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <span>APY</span>
-            <span>TVL</span>
+            <Text01>APY</Text01>
+            <Text01>Liquidity</Text01>
           </Flex>
 
 
@@ -225,13 +234,13 @@ const FarmCard: React.FC<FarmCardProps> = ({
         </Flex> )}
 
         <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <span>7 Days</span>
-            <span>Withdrawal Fee</span>
+            <Text01>7 Days</Text01>
+            <Text01>Your Stake</Text01>
           </Flex>
 
           <Flex justifyContent='space-between'>
           <Quote>{Weekly}</Quote>
-          <Quote>2%</Quote>
+          <Quote>$0</Quote>
         </Flex>
 
 

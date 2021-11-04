@@ -25,10 +25,13 @@ import Page from 'components/layout/Page'
 import { FaQuestionCircle , FaUserCheck, FaLock, FaHistory, FaExchangeAlt, FaWater, FaProjectDiagram, FaFireAlt, FaBurn } from 'react-icons/fa'
 import PoolsDashboard from 'views/PoolsDashboard'
 import ClaimBalance from 'views/ClaimBalance/ClaimBalance'
+import BondsDashboard from 'views/BondsDashboard'
 import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Hero2 from './components/Hero'
+
+
 
 
 const Feature = styled.div`
@@ -205,7 +208,7 @@ const Farm: React.FC = () => {
 
         </Wrapper> */ }
 
-    <PoolsDashboard/>
+    <BondsDashboard/>
 
 
    

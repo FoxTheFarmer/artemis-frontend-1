@@ -152,13 +152,15 @@ const NavBar = (props) => {
   return (
     <div>
       <header>
+        
           <div className="nav-wrapper">
-              <nav>
 
-              <object 
-              type="image/svg+xml" 
+
+              <nav>
+              <object type="image/svg+xml" 
               data="/images/banner.svg" 
-              width="250px" style={{'marginTop': '60px', 'marginBottom': '10px', 'marginLeft': '10px'}}>&nbsp;</object>
+              width="230px" style={{'marginTop': '50px', 'marginBottom': '15px', 'marginLeft': '10px'}}>&nbsp;</object>
+             
 
                 <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
                 <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>

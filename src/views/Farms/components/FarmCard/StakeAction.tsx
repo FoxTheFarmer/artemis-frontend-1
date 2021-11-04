@@ -6,7 +6,7 @@ import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { FaArrowDown, FaArrowUp, FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaRegHandPointDown, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
+import { FaArrowDown, FaArrowUp, FaClock, FaFire, FaFlask, FaGhost, FaInfinity, FaLock, FaMountain, FaRegHandPointDown, FaRegWindowRestore, FaSeedling, FaTractor, FaTruck, } from 'react-icons/fa'
 import StyledBTN from 'components/layout/StyledBTN'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
@@ -91,7 +91,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = (
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <StyledBTN onClick={onPresentDeposit} > {TranslateString(999, 'Stake ')} </StyledBTN>
+      <StyledBTN onClick={onPresentDeposit} > {TranslateString(999, 'Stake ')}</StyledBTN>
     ) : (
       <IconButtonWrapper>
         
