@@ -151,7 +151,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
 
         <Flex justifyContent='space-between' marginTop='6px'>
-          <span><FaTractor/> APR</span>
+          <span>APY</span>
           <Quote>{APR}%</Quote>
         </Flex>
 

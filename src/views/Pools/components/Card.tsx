@@ -6,12 +6,8 @@ const Card = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
   border-radius: 20px;
   padding: 20px;
 
-
   border:2px solid #fff;
-  box-shadow: 5px 5px 5px #ccc;
-  -moz-box-shadow: 5px 5px 5px #ccc;
-  -webkit-box-shadow: 5px 5px 5px #ccc;
-  -khtml-box-shadow: 5px 5px 5px#ccc;
+  box-shadow: 0px 0px 15px #ccc;
 
   display: flex;
   flex-direction: column;

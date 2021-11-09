@@ -24,6 +24,8 @@ import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import { FaQuestionCircle , FaUserCheck, FaLock, FaHistory, FaExchangeAlt, FaWater, FaProjectDiagram } from 'react-icons/fa'
 import FlexStaking from 'components/layout/FlexStaking'
+
+import StakeDashboard from 'views/StakeDashboard'
 import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 
@@ -177,7 +179,8 @@ const Farm: React.FC = () => {
 
         </ButtonMenu>
       </Wrapper> */ }
-    
+
+      <StakeDashboard/>    
 
       <FlexStaking>
         <Route exact path={`${path}`}>
@@ -195,11 +198,6 @@ const Farm: React.FC = () => {
         </Route>
       </FlexStaking>
 
-      <FlexLayout>
-          <Feature >
-            <FaProjectDiagram /><br /> Artemis Incubator
-          </Feature>
-      </FlexLayout>
           
     </Page>
   )
