@@ -78,7 +78,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BTCB-BNB LP',
     lpAddresses: {
       1666700000: '',
-      1666600000: '0x61EB789d75A95CAa3fF50ed7E47b96c132fEc082', // (to LABO BUSD LP)
+      1666600000: '0x61EB789d75A95CAFa3fF50ed7E47b96c132fEc082', // (to LABO BUSD LP)
     },
     tokenSymbol: 'BTCB',
     tokenAddresses: {
@@ -194,21 +194,40 @@ const farms: FarmConfig[] = [
   {
     pid:labo.pids.pidList[2],
     risk: 5,
-    lpSymbol: 'MIS-ONE LP',
+    lpSymbol: 'RVRS & ONE',
     lpAddresses: {
       1666700000: labo.addr.LaboBnbAddrTestnet,
       1666600000: labo.addr.LaboBnbAddr, // ( MIS-ONE LP ) 
     },
     tokenSymbol: 'ONE',
     tokenAddresses: {
-      1666700000: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
+      1666700000: '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
       1666600000: '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
     },
     quoteTokenSymbol: QuoteToken.MIS,
     quoteTokenAdresses: contracts.cake,
   },
 
+
+
   {
+    pid:labo.pids.pidList[0],
+    risk: 5,
+    lpSymbol: 'RVRS & UST',
+    lpAddresses: {
+      1666700000: labo.addr.LaboBusdAddrTestnet,
+      1666600000: labo.addr.LaboUstAddr, // ( MIS-UST LP)
+    },
+    tokenSymbol: 'MIS',
+    tokenAddresses: {
+      1666700000: labo.addr.LaboAddrTestnet,
+      1666600000: labo.addr.LaboAddr,
+    },
+    quoteTokenSymbol: QuoteToken.UST,
+    quoteTokenAdresses: contracts.ust,
+  },
+  /* 
+    {
     pid:labo.pids.pidList[8],
     risk: 5,
     lpSymbol: '1USDC-UST LP',
@@ -224,24 +243,8 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.UST,
     quoteTokenAdresses: contracts.ust,
   },
-
+  
   {
-    pid:labo.pids.pidList[0],
-    risk: 5,
-    lpSymbol: 'MIS-UST LP',
-    lpAddresses: {
-      1666700000: labo.addr.LaboBusdAddrTestnet,
-      1666600000: labo.addr.LaboUstAddr, // ( MIS-UST LP)
-    },
-    tokenSymbol: 'MIS',
-    tokenAddresses: {
-      1666700000: labo.addr.LaboAddrTestnet,
-      1666600000: labo.addr.LaboAddr,
-    },
-    quoteTokenSymbol: QuoteToken.UST,
-    quoteTokenAdresses: contracts.ust,
-  },
-  /* {
     pid: labo.pids.pidList[2],
     risk: 5,
     isTokenOnly: true,
@@ -273,7 +276,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.UST,
     quoteTokenAdresses: contracts.ust,
-  }, */
+  }, 
   {
     pid:labo.pids.pidList[3],
     risk: 3,
@@ -371,24 +374,24 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.MIS,
     quoteTokenAdresses: contracts.cake,
   },
-  
+   */
   {
     pid:labo.pids.pidList[1],
     risk: 3,
-    lpSymbol: 'ONE-UST LP',
+    lpSymbol: 'ONE & UST',
     lpAddresses: {
-      1666700000: '0x0fd43eb53e9c80eb439dc47da7539d8b6f71dc1e',
-      1666600000: '0x61356c852632813f3d71d57559b06cdff70e538b',
+      1666700000: '0x61356C852632813f3d71D57559B06cdFf70E538B',
+      1666600000: '0x61356C852632813f3d71D57559B06cdFf70E538B',
     },
     tokenSymbol: 'ONE',
     tokenAddresses: {
-      1666700000: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
+      1666700000: '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
       1666600000: '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
     },
     quoteTokenSymbol: QuoteToken.UST,
     quoteTokenAdresses: contracts.ust,
   },
-
+ /*
   /* {
     pid:labo.pids.pidList[3],
     risk: 3,
