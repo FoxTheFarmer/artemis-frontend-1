@@ -51,6 +51,11 @@ export const useFarmFromSymbol = (lpSymbol: string): Farm => {
 }
 
 
+// Block
+export const useBlock = () => {
+  return useSelector((state: State) => state.block);
+};
+
 export const useFarmTokensToUsd = (pid, farmTokens) => {
   // farmTokens is the # of LP tokens, or just the number of tokens for single staking pools
   // All price logic should go here for farms
