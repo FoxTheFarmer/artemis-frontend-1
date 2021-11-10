@@ -156,31 +156,19 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='6px'>
-        <span><FaScroll/> TVL</span>
+        <span> TVL</span>
         <Quote>${TVL}</Quote>
       </Flex>
 
-          <Flex justifyContent='space-between' marginTop='6px'>
-          <span><FaClock/> Ends In</span>
-          <Quote>~{hsRemaining} Days</Quote>
-        </Flex>
-
-        <LinkExternal href={projectLink} target="_blank" marginTop='6px'>
-        <span > About The Project</span>
-          </LinkExternal>
-
-        
 
 
-        <Divider />
-
-        <Flex justifyContent='space-between' marginTop='25px'>
-          <span><FaBox/> Your Deposits</span>
+        <Flex justifyContent='space-between' marginTop='6px'>
+          <span>Your Deposits</span>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
-        <Flex marginTop='2px' justifyContent='space-between'>
-          <span><FaSeedling/> {tokenName} Earned</span>
+        {/* <Flex marginTop='2px' justifyContent='space-between'>
+          <span>{tokenName} Earned</span>
           <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
 
           {sousId === 0 && account && harvest && (
@@ -188,7 +176,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                 disabled={!earnings.toNumber() || pendingTx}
                 text={pendingTx ? TranslateString(999, 'Compounding') : TranslateString(999, 'Compound')}
                 onClick={onPresentCompound}/>)} 
-        </Flex>
+          </Flex> */ }
 
 
 

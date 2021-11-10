@@ -182,7 +182,7 @@ const NavBar = (props) => {
 
                         <li className="nav-tab">
                           <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Bond</span>
+                            <span className="dditem">Bonding</span>
                           </Link>
                         </li>
 
@@ -228,20 +228,12 @@ const NavBar = (props) => {
                  </ul>
                 
                 <ul className="web3buttons">
-                 <li className="web3li insideMainNav">
-                   <a target="_blank" rel="noreferrer" href="https://info.defikingdoms.com/token/0xd74433b187cf0ba998ad9be3486b929c76815215" className="nav-links price">
-                  <Price
-                    style={{ marginRight: '4px',
-                            backgroundColor: 'transparent' }}
-                  >
-                    <Token src="images/icon.png" alt='1' width="23px" height="23px"/>
-                    <p>{ ( !cakePriceUsd.isNaN() ? cakePriceUsd.toNumber().toFixed(3).concat("$") : '...loading') }</p></Price>
-                  </a></li>
-   
+
+
                 <li className="web3li insideMainNav">
                   <Link to="/" className="nav-links connect">
                   { account != null && account.length > 1? 
-                    <Price>{account.substring(0,( isOnPhone ? 8 : 8)).concat("...")} <p style={{'color': 'white'}}> ✓</p></Price>:
+                    <Price>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")} <p style={{'color': 'white'}}>...</p></Price>:
 
                   <UnlockButton style={{
                     backgroundColor: 'rgb(22, 35, 73) !important',

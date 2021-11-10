@@ -227,10 +227,7 @@ const MoneyWheel: React.FC = () => {
 
                 <Flex>
                   <Test>{TranslateString(9299, 'Reverseum Treasury')}</Test>
-                    {account ? (
-                      <StyledBtn id="harvest-all" disabled={balancesWithValue.length <= 0 || pendingTx} 
-                      onClick={harvestAllFarms} style={{'marginLeft':'15px', 'marginTop':'-5px'}}>
-                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>) : (<UnlockButton/>)}
+                    
                 </Flex>
 
                   <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>

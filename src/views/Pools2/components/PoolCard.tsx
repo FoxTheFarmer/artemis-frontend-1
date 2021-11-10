@@ -138,11 +138,18 @@ const Quote = styled.p`
     text-shadow: 1px 1px 5px #ccc;
 `
 
+const Quote2 = styled.p`
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 0px;
+`
+
 const Quote3 = styled.p`
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 0px;
     text-shadow: 1px 1px 10px #ccc;
+    margin-top: 7px;
 `
 
 const DashboardPage2 = styled(Container)`
@@ -267,20 +274,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
       {sousId === 0 && <PoolFinishedSash />}
 
-      <Wrapper justifyContent="space-between" alignItems="center" mb="0px" padding='15px' marginRight='180px'>
+      <Wrapper justifyContent="space-between" alignItems="center" mb="0px" padding='15px' >
 
-        <Flex justifyContent='space-between' alignItems='center' >
-          <Quote>Asset</Quote>
+      <Flex flexDirection="column" alignItems="flex-end">
+          <Quote>{tokenName} Bonding Pool</Quote>
+
         </Flex>
 
-        <Flex justifyContent='space-between' alignItems='center' >
-          <Quote>Returns</Quote>
-        </Flex>
 
-        <Flex justifyContent='space-between' alignItems='center' >
-          <Quote>Rewards End In</Quote>
-        </Flex>
-
+     
 
       </Wrapper>
 
@@ -288,23 +290,24 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
       <Wrapper justifyContent="space-between" alignItems="center" mb="0px">
 
-        <Flex flexDirection="column" alignItems="flex-end">
-          <Quote3>{tokenName}</Quote3>
-        </Flex>
 
 
 
-        <Flex justifyContent='space-between' alignItems='center' >
-            <Quote3>ROI {APR}%</Quote3>
-            
+
+        <Flex  flexDirection="column" alignItems='start' >
+            <Quote>Returns</Quote>
+            <Quote3>{APR}%</Quote3>
           </Flex>
-          <Flex justifyContent='space-between' alignItems='center' >
+
+          <Flex  flexDirection="column" alignItems='start' >
+            <Quote>Incentives End</Quote>
             <Quote3>{daysRemaining} Days</Quote3>
           </Flex>
 
-          {/* <Flex justifyContent='space-between'>
-          <Quote>${TVL}</Quote>
-          </Flex> */ }
+          <Flex flexDirection="column" alignItems='start' >
+            <Quote>TVL</Quote>
+            <Quote3>${TVL}</Quote3>
+          </Flex>
 
         <Flex justifyContent='right'>
           <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
@@ -328,8 +331,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Rewards End In</Quote>
-              <Quote> {daysRemaining} Days</Quote>
+              <Quote> Estimated ROI (5 Days)</Quote>
+              <Quote>TODO</Quote>
             </Flex>
 
 
@@ -351,7 +354,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote><FaAngleRight/> Once Bonded, assets cannnot be recovered</Quote>
+              <Quote2><FaAngleRight/> Once Bonded, assets cannnot be recovered</Quote2>
             </Flex>
 
 
@@ -362,8 +365,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               {account && (needsApproval && !isOldSyrup ? (
 
                 <div style={{ flex: 1 }}>
-                  <StyledBtn disabled={isFinished || isDepositFinished} onClick={handleApprove}  >
-                    Approve
+                  <StyledBtn 
+                  disabled={isFinished || isDepositFinished} 
+                  onClick={handleApprove}
+                  style={{maxWidth:'150px'}}  >
+                    Enable Bonding
                   </StyledBtn>
                 </div>
 
