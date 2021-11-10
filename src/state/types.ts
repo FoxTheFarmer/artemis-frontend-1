@@ -59,11 +59,6 @@ export interface Price{
 
 // Slices states
 
-export interface BlockState {
-  currentBlock: number;
-  initialBlock: number;
-}
-
 export interface FarmsState {
   data: Farm[],
   price?: BigNumber
@@ -87,7 +82,6 @@ export interface State {
   farms: FarmsState
   pools: PoolsState
   pools2: Pools2State
-  block: BlockState;
   price: PriceState
 }
 
@@ -95,5 +89,3 @@ export interface State2 {
   pools: Pools2State
   price: PriceState
 }
-
-

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Route } from 'react-router-dom';
 import BigNumber from 'bignumber.js';
 import { useWeb3React } from '@web3-react/core';
-import { Flex } from '@pancakeswap-libs/uikit';
+import { Flex } from '@fox/uikit';
 import orderBy from 'lodash/orderBy';
 import partition from 'lodash/partition';
 import usePersistState from 'hooks/usePersistState';
