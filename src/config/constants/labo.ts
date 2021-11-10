@@ -4,12 +4,12 @@
 
 // Labo ADDRESSES
 
-const LaboUstAddr = '0x513568f49e384811d7cf7e6de4daa4ddc3c4a779'
-const LaboBnbAddr = '0x006d392b015d154f6580f68d659f803f0d22bcee'
-const LaboUstAddrV2 = '0x513568f49e384811d7cf7e6de4daa4ddc3c4a779'
-const LaboBnbAddrV2 = '0x006d392b015d154f6580f68d659f803f0d22bcee'
-const LaboAddr = '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658'
-const masterChef = '0xa385399B4dE3B5f01a31b0E753f32E18e526db8f'
+const LaboUstAddr = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
+const LaboBnbAddr = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
+const LaboUstAddrV2 = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
+const LaboBnbAddrV2 = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
+const LaboAddr = '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF'
+const masterChef = '0x59C777cd749b307Be910f15c54A3116ff88f9706'
 const misWheel = '0x9F310757333e6083372d2603CFbd3B61c0F21C54'
 // testnet addresses
 const LaboBusdAddrTestnet = '0xf73dc3652b3619312ddd3de7dbf3f354eb5c00b5' // MIS-BUSD LP
