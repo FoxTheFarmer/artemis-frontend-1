@@ -5,8 +5,12 @@ export default {
     1666600000: labo.addr.LaboAddr,
     1666700000: labo.addr.LaboAddrTestnet,
   },
+  rvrs: {
+    1666600000: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
+    1666700000: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
+  },
   masterChef: {
-    1666600000: labo.addr.masterChef, // cambiar
+    1666600000: labo.addr.masterChef,
     1666700000: labo.addr.masterChefTestnet,
   },
   sousChef: {
@@ -32,8 +36,8 @@ export default {
     1666700000: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
   },
   one: {
-    1666600000: '0x00eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-    1666700000: '',
+    1666600000: '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a',
+    1666700000: '0x7466d7d0c21fa05f32f5a0fa27e12bdc06348ce2',
   },
   lottery: {
     1666600000: '0x972f3f899a970e0BA0CbF3cC94eFf3E123412d46',
@@ -68,7 +72,7 @@ export default {
     1666700000: '0x1e120b3b4af96e7f394ecaf84375b1c661830013',
   },
   autoRVRS: {
-    1666600000: '0x19f3079b4c6706edc688A3e3EF713d793c5fd876',
-    1666700000: '0x19f3079b4c6706edc688A3e3EF713d793c5fd876',
+    1666600000: '0x9a50FBc4914D920Dc54aF3B4AD4Ee38F7F72b9Ae',
+    1666700000: '0x9a50FBc4914D920Dc54aF3B4AD4Ee38F7F72b9Ae',
   },
 }

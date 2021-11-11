@@ -159,24 +159,9 @@ export const usePriceTranq = (): BigNumber => {
 // }
 
 
-
-
-
 export const usePriceCakeBusd = (): BigNumber => {
-  // const pid = 1 // CAKE-BNB LP
-  // const bnbPriceUSD = usePriceBnbBusd()
-  // const farm = useFarmFromPid(pid)
-  // return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
-  // const dispatch = useDispatch()
-  const pid = labo.pids.pidLaboUst; // EGG-BUSD LP
+  const pid = 3;
   const farm = useFarmFromPid(pid);
-  // dispatch(fetchLaboPriceAsync());
-  // const price = useSelector((state: State) => state.farms.price)
-  // if (!labo.fetch.fetchAutomatic){
-  //   return ( !labo.fetch.fetchPriceCustom ? new BigNumber(farm.tokenPriceVsQuote) : new BigNumber(price))
-  // }
-
-  // return ( !( price ? price.isFinite : false ) ? new BigNumber(farm.tokenPriceVsQuote) : new BigNumber(price))
   return new BigNumber(farm.tokenPriceVsQuote);
 }
 
@@ -188,6 +173,7 @@ export const usePrices = () => {
 
   return [
       {name: QuoteToken.MIS, price: misPrice},
+      {name: QuoteToken.RVRS, price: misPrice},
       {name: QuoteToken.CAKE, price: misPrice},
       {name: QuoteToken.ONE, price: onePrice},
       {name: QuoteToken.TRANQ, price: tranqPrice},
@@ -200,6 +186,7 @@ export const lookupPrice = (tokenName, prices) => {
   if (tokenPrice) {
     return tokenPrice.price
   }
+  console.log('prices', prices)
   console.log("ERROR: No price found for", tokenName)
   return new BigNumber(0)
 }
@@ -215,8 +202,8 @@ export const getTotalValueFromQuoteTokens = (quoteTokenAmount, quoteToken, price
     const price = lookupPrice(QuoteToken.ONE, prices)
     return new BigNumber(2).times(quoteTokenAmount).times(price)
   }
-  if (quoteToken === QuoteToken.MIS) {
-    const price = lookupPrice(QuoteToken.MIS, prices)
+  if (quoteToken === QuoteToken.RVRS) {
+    const price = lookupPrice(QuoteToken.RVRS, prices)
     return new BigNumber(2).times(quoteTokenAmount).times(price)
   }
   console.log("ERROR: NO PRICE FOUND FOR QuoteToken:", quoteToken)
