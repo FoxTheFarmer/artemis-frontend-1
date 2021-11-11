@@ -9,8 +9,13 @@ export const approve = async (lpContract, masterChefContract, account) => {
 
 export const stake = async (masterChefContract, pid, amount, account) => {
   return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .deposit(
+        pid,
+        new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
+        account,
+        account
+    )
+    .send({ from: account, gasPrice: 1000000000, gasLimit: 606490 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -19,7 +24,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
 export const sousStake = async (sousChefContract, amount, account) => {
   return sousChefContract.methods
     .deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .send({ from: account, gasPrice: 1000000000, gasLimit: 806490 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -45,7 +50,7 @@ export const sousStakeBnb = async (sousChefContract, amount, account) => {
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   return masterChefContract.methods
-    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
     .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
@@ -89,7 +94,7 @@ export const sousEmegencyUnstake = async (sousChefContract, amount, account) => 
 
 export const harvest = async (masterChefContract, pid, account) => {
   return masterChefContract.methods
-    .deposit(pid, '0', account)
+    .harvest(pid, account)
     .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash

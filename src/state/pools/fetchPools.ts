@@ -1,20 +1,18 @@
-import autofoxAbi from 'config/abi/autorvrs.json';
+import masterchefAbi from 'config/abi/masterchef.json';
 import multicall from 'utils/multicall';
-import { getAutoRvrsAddress } from 'utils/addressHelpers';
+import {getAutoRvrsAddress, getMasterChefAddress} from 'utils/addressHelpers';
 import BigNumber from 'bignumber.js';
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchPoolsTotalStaking = async () => {
   const calls = [
     {
-      address: getAutoRvrsAddress(),
-      name: 'balanceOf',
-      params: []
+      address: getMasterChefAddress(),
+      name: 'userInfo',
+      params: [0, getAutoRvrsAddress()]
     }
   ];
-  const totalStaked = await multicall(autofoxAbi, calls);
+  const userInfo = await multicall(masterchefAbi, calls);
 
-  return {
-    totalStaked: new BigNumber(totalStaked).toJSON()
-  };
+  return userInfo;
 };

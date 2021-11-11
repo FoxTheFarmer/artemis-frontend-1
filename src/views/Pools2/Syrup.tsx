@@ -16,7 +16,6 @@ import {
   usePools2,
   usePrices,
   getTotalValueFromQuoteTokens,
-  usePriceTranq,
   lookupPrice,
 } from 'state/hooks'
 import { QuoteToken, Pool2Category } from 'config/constants/types'
@@ -96,21 +95,8 @@ const Farm: React.FC = () => {
   const { account } = useWallet()
   const farms = useFarms()
   const pools2 = usePools2(account)
-  const bnbPriceUSD = usePriceBnbBusd()
   const prices = usePrices()
-  const priceTranq = usePriceTranq()
   const block = useBlock()
-
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
-    const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
-      return new BigNumber(1)
-    }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
-    }
-    return tokenPriceBN
-  }
 
   const poolsWithApy = pools2.map((pool2) => {
 

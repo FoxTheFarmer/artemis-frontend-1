@@ -16,8 +16,7 @@ import {
   usePools,
   usePrices,
   getTotalValueFromQuoteTokens,
-  usePriceTranq,
-  lookupPrice,
+  lookupPrice, useFarmFromPid,
 } from 'state/hooks'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -107,40 +106,40 @@ const SvgHero = styled.div`
   }
 `
 
+export const aprToApy = (apr: number): BigNumber => {
+  const cmpd = 1000;
+  const apy = new BigNumber(apr).div(100).div(cmpd).plus(1).pow(cmpd).minus(1).times(100);
+
+  return apy.isNaN() || !apy.isFinite() ? null : apy;
+};
+
+
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
   const { account } = useWallet()
-  const farms = useFarms()
+  const farm0 = useFarmFromPid(0);
   const pools = usePools(account)
-  const bnbPriceUSD = usePriceBnbBusd()
   const prices = usePrices()
-  const priceTranq = usePriceTranq()
   const block = useBlock()
-
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
-    const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
-      return new BigNumber(1)
-    }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
-    }
-    return tokenPriceBN
-  }
 
   const poolsWithApy = pools.map((pool) => {
 
-    let quoteTokens = new BigNumber(pool.quoteTokenPerLp).times(pool.totalStaked).div(new BigNumber(10).pow(18))
-    if (pool.sousId === 4 || pool.tokenName === pool.quoteTokenSymbol) {
-        // Handle single staking pools
-        quoteTokens = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).div(2)
-    }
-     if (pool.sousId === 8 || pool.tokenName === pool.quoteTokenSymbol) {
-      // Handle single staking pools
-      quoteTokens = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).div(2)
-    } 
-
+    const quoteTokens = pool.userData ?
+        new BigNumber(pool.userData.stakedBalance).div(2).div(new BigNumber(10).pow(18)) :
+        new BigNumber(0)
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool.quoteTokenSymbol, prices)
+
+    const reverseAtlastUserAction = pool.userData ?
+        new BigNumber(pool.userData.reverseAtlastUserAction) :
+        new BigNumber(0)
+
+    const lastDepositedTime = pool.userData ?
+        new BigNumber(pool.userData.lastDepositedTime) :
+        new BigNumber(0)
+
+    const lastUserActionTime = pool.userData ?
+        new BigNumber(pool.userData.lastUserActionTime) :
+        new BigNumber(0)
 
     // console.log("APY", pool, tvl && tvl.toNumber())
     const rewardTokenPrice = lookupPrice(pool.tokenName, prices)
@@ -148,14 +147,19 @@ const Farm: React.FC = () => {
 
     const totalRewardPricePerYear = rewardTokenPrice.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     // const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
-    const apy = totalRewardPricePerYear.div(tvl).times(100)
+    const apr = totalRewardPricePerYear.div(tvl).times(100)
+    const apy = aprToApy(apr)
     // console.log("TVL", pool.stakingTokenName, tvl && tvl.toNumber(), apy && apy.toNumber())
 
     return {
       ...pool,
       isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock,
+      apr,
       apy,
-      tvl
+      tvl,
+      lastDepositedTime,
+      lastUserActionTime,
+      reverseAtlastUserAction
     }
   })
 

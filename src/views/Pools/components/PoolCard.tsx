@@ -21,8 +21,9 @@ import WithdrawModal from './WithdrawModal'
 import CompoundModal from './CompoundModal'
 import CardTitle from './CardTitle'
 import Card from './Card'
-import HarvestButton from './HarvestButton'
-import CardFooter from './CardFooter'
+import {usePriceCakeBusd} from "../../../state/hooks";
+import useWithdrawFeeTimer from "./useWithdrawFeeTimer";
+import WithdrawalFeeTimer from "./withdrawFeeTimer";
 
 const Quote = styled.p`
     font-size: 15px;
@@ -31,6 +32,7 @@ const Quote = styled.p`
 
 interface PoolWithApy extends Pool {
   apy: BigNumber
+  apr: BigNumber
 }
 
 interface HarvestProps {
@@ -66,6 +68,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     stakingTokenAddress,
     projectLink,
     harvest,
+    apr,
     apy,
     tokenDecimals,
     poolCategory,
@@ -89,8 +92,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const { onStake } = useSousStake(sousId, isBnbPool)
   const { onUnstake } = useSousUnstake(sousId)
   const { onReward } = useSousHarvest(sousId, isBnbPool)
+  const rvrsPrice = usePriceCakeBusd()
 
-  console.log("PoolCard", pool)
+  const { secondsRemaining, hasUnstakingFee } = useWithdrawFeeTimer(
+      userData.lastDepositedTime.toNumber(),
+      parseInt('259200', 10)
+  );
+
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -98,6 +106,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
+  const stakedBalanceUsd = stakedBalance.times(rvrsPrice)
 
   const blocksUntilStart = Math.max(startBlock - block, 0)
 
@@ -140,8 +149,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
-  const APR = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+  const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+  const APY_DAILY = apr && apr.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -152,10 +162,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
         <Flex justifyContent='space-between' marginTop='6px'>
           <span>APY</span>
-          <Quote>{APR}%</Quote>
+          <Quote>{APY}%</Quote>
+        </Flex>
+        <Flex justifyContent='space-between' marginTop='6px'>
+          <span>Daily APY</span>
+          <Quote>{APY_DAILY}%</Quote>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='6px'>
+      <Flex justifyContent='space-between' marginTop='6px'>
         <span> TVL</span>
         <Quote>${TVL}</Quote>
       </Flex>
@@ -166,6 +180,20 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <span>Your Deposits</span>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
+      <Flex justifyContent='space-between' marginTop='6px'>
+        <span>Your Deposits USD</span>
+        <Quote>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</Quote>
+      </Flex>
+      <Flex justifyContent='space-between' marginTop='6px'>
+        <span> Withdraw fee first 72h</span>
+        <Quote>0.2%</Quote>
+      </Flex>
+
+        <Flex justifyContent='space-between' marginTop='6px'>
+          <span> Time left for withdraw fee</span>
+          <WithdrawalFeeTimer secondsRemaining={secondsRemaining} />
+        </Flex>
+
 
         {/* <Flex marginTop='2px' justifyContent='space-between'>
           <span>{tokenName} Earned</span>

@@ -6,7 +6,7 @@ import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import { getAutoRvrsAddress, getCakeAddress, getMasterChefAddress } from 'utils/addressHelpers'
+import {getAutoRvrsAddress, getCakeAddress, getMasterChefAddress, getRvrsAddress} from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
@@ -15,8 +15,6 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.BNB)
-const bnbPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.BNB)
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
 const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
 
@@ -34,7 +32,7 @@ export const fetchPoolsAllowance = async (account) => {
   )
 }
 
-export const fetchUserBalances = async account => {
+export const fetchUserStakeBalances = async account => {
   const calls = [
     {
       address: getAutoRvrsAddress(),
@@ -42,20 +40,20 @@ export const fetchUserBalances = async account => {
       params: [account]
     }
   ];
-  const tokenBalancesRaw = await multicall(autorvrsAbi, calls);
+  const stakedTokenBalancesRaw = await multicall(autorvrsAbi, calls);
 
-  return { tokenBalancesRaw };
+  return stakedTokenBalancesRaw;
 };
 
-export const fetchUserStakeBalances = async account => {
+export const fetchUserBalances = async account => {
   const calls = [
     {
-      address: getCakeAddress(),
+      address: getRvrsAddress(),
       name: 'balanceOf',
       params: [account]
     }
   ];
   const tokenBalancesRaw = await multicall(erc20ABI, calls);
 
-  return { tokenBalancesRaw };
+  return tokenBalancesRaw;
 };

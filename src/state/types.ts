@@ -33,6 +33,9 @@ export interface Pool extends PoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    reverseAtlastUserAction: BigNumber
+    lastDepositedTime: BigNumber
+    lastUserActionTime: BigNumber
   }
 }
 
@@ -50,6 +53,9 @@ export interface Pool2 extends Pool2Config {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    reverseAtlastUserAction: BigNumber
+    lastDepositedTime: BigNumber
+    lastUserActionTime: BigNumber
   }
 }
 

@@ -35,3 +35,6 @@ export const getLotteryTicketAddress = () => {
 export const getAutoRvrsAddress = () => {
   return addresses.autoRVRS[chainId]
 }
+export const getRvrsAddress = () => {
+  return addresses.rvrs[chainId]
+}

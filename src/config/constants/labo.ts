@@ -2,6 +2,10 @@
 
 //----------------------------------------------------------------------------------------------------------------------------------------------
 
+// RVRS Addresses
+
+const masterChef = '0xa385399B4dE3B5f01a31b0E753f32E18e526db8f'
+
 // Labo ADDRESSES
 
 const LaboUstAddr = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
@@ -9,7 +13,6 @@ const LaboBnbAddr = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
 const LaboUstAddrV2 = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
 const LaboBnbAddrV2 = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
 const LaboAddr = '0xAe0E6F11f0decc8a59B51bc56e52421970B552dF'
-const masterChef = '0x59C777cd749b307Be910f15c54A3116ff88f9706'
 const misWheel = '0x9F310757333e6083372d2603CFbd3B61c0F21C54'
 // testnet addresses
 const LaboBusdAddrTestnet = '0xf73dc3652b3619312ddd3de7dbf3f354eb5c00b5' // MIS-BUSD LP
@@ -17,7 +20,7 @@ const LaboBnbAddrTestnet = '0x31222d37568bd54be95ece3749f0559c45a85634' // MIS-W
 const LaboBusdAddrV2Testnet = '0xf73dc3652b3619312ddd3de7dbf3f354eb5c00b5' // MIS-BUSD LP
 const LaboBnbAddrV2Testnet = '0x31222d37568bd54be95ece3749f0559c45a85634' // MIS-BUSD LP
 const LaboAddrTestnet = '0xF2f587fD8A423880037F39828d593d4cE1961A98' // MIS ADDRESS
-const masterChefTestnet = '0xDd62435ca34666f65c32ED62eA5331b2128ED262' // MIS MASTERCHEF
+const masterChefTestnet = '0xa385399B4dE3B5f01a31b0E753f32E18e526db8f' // MIS MASTERCHEF
 
 // Labo RELATED PIDS
 
@@ -36,8 +39,8 @@ const countLength = 2
 
 // CHANGE Labo FOR THE TOKEN BEIGN TESTED
 
-const xPerBlock = "laboPerBlock" // referenced in getMasterChefAddress()
-const pendingX = "pendingLabo"
+const xPerBlock = "rewardPerSecond" // referenced in getMasterChefAddress()
+const pendingX = "pendingReward"
 
 // SEARCH AND REPLACE THIS STRING IF USING ANY OTHER THAN LABO: await masterChefContract.methods.pendingLabo in \src\state\pools\fetchPoolsUser.ts
 
