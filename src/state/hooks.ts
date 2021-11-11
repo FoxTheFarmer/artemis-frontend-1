@@ -211,15 +211,17 @@ export const usePriceSonic = (): BigNumber => {
 }
 
 export const usePriceLuna = (): BigNumber => {
+  const priceMis = usePriceCakeBusd();
   const pid = 9 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? new BigNumber(priceMis).times(farm.tokenPriceVsQuote) : ZERO
 } 
 
 export const usePriceRvrs = (): BigNumber => {
+  const priceMis = usePriceCakeBusd();
   const pid = 11 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+  return farm.tokenPriceVsQuote ? new BigNumber(priceMis).times(farm.tokenPriceVsQuote) : ZERO
 } 
 
 export const usePriceTranqb = (): BigNumber => {
