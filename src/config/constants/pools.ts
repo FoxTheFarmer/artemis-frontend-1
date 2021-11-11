@@ -2,7 +2,7 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
   {
-    sousId: 1,
+    sousId: 0,
     tokenName: 'RVRS',
     earnToken: 'RVRS',
     quoteTokenSymbol: QuoteToken.RVRS,
@@ -24,7 +24,7 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
     startBlock: 17996500,
-    endBlock: 190000000,
+    endBlock: 920000000,
     tokenDecimals: 18,
    },
 ]

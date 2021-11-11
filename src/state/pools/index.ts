@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
+import BigNumber from "bignumber.js";
 import { createSlice } from '@reduxjs/toolkit'
+import autoRvrsAbi from "config/abi/autorvrs.json";
 import poolsConfig from 'config/constants/pools'
 import {
   fetchPoolsAllowance,
@@ -7,6 +9,9 @@ import {
   fetchUserStakeBalances,
 } from './fetchPoolsUser'
 import { PoolsState, Pool } from '../types'
+import {fetchPoolsTotalStaking} from "./fetchPools";
+import {getAutoRvrsAddress} from "../../utils/addressHelpers";
+import multicall from "../../utils/multicall";
 
 const initialState: PoolsState = { data: [...poolsConfig] }
 
@@ -39,20 +44,40 @@ export const PoolsSlice = createSlice({
 // Actions
 export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = PoolsSlice.actions
 
+export const fetchPoolsUserInfo = async (account) => {
+  const calls = [
+    {
+      address: getAutoRvrsAddress(),
+      name: 'userInfo',
+      params: [account]
+    }
+  ];
+  const userInfo = await multicall(autoRvrsAbi, calls);
+
+  return userInfo;
+};
+
 export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)
   const stakingTokenBalances = await fetchUserBalances(account)
   const stakedBalances = await fetchUserStakeBalances(account)
+  const userInfoMC = await fetchPoolsTotalStaking()
+  const userInfo = await fetchPoolsUserInfo(account)
 
   const userData = poolsConfig.map((pool) => ({
     sousId: pool.sousId,
     allowance: allowances[pool.sousId],
     stakingTokenBalance: stakingTokenBalances[pool.sousId],
     stakedBalance: stakedBalances[pool.sousId],
+    totalStaking: userInfoMC[pool.sousId].amount,
+    lastDepositedTime: userInfo[pool.sousId].lastDepositedTime,
+    lastUserActionTime: userInfo[pool.sousId].lastUserActionTime,
+    reverseAtlastUserAction: userInfo[pool.sousId].reverseAtlastUserAction,
   }))
 
   dispatch(setPoolsUserData(userData))
 }
+
 
 export const updateUserAllowance = (sousId: string, account: string) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)

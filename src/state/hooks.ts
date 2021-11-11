@@ -118,11 +118,6 @@ export const usePriceBnbBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceTranq = (): BigNumber => {
-  const priceMis = usePriceCakeBusd();
-  const pool = usePoolFromPid(1)
-  return new BigNumber(priceMis).times(pool.tokenPriceVsQuote);
-}
 
 
 // export const fetchLaboPrice = (): BigNumber => {
@@ -168,7 +163,6 @@ export const usePriceCakeBusd = (): BigNumber => {
 export const usePrices = () => {
   const misPrice = usePriceCakeBusd()
   const onePrice = usePriceBnbBusd()
-  const tranqPrice = usePriceTranq()
 
 
   return [
@@ -176,7 +170,6 @@ export const usePrices = () => {
       {name: QuoteToken.RVRS, price: misPrice},
       {name: QuoteToken.CAKE, price: misPrice},
       {name: QuoteToken.ONE, price: onePrice},
-      {name: QuoteToken.TRANQ, price: tranqPrice},
   ]
 }
 

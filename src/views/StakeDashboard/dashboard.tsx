@@ -198,7 +198,7 @@ const MoneyWheel: React.FC = () => {
   ? new BigNumber(0) : misPrice.times(circSupply) );
 
   let vikingPerBlock = 0;
-  if (process.env.REACT_APP_DEBUG === "true"){ console.log(farms[0], 'testing viking per block') }
+  // if (process.env.REACT_APP_DEBUG === "true"){ console.log(farms[0], 'testing viking per block') }
   if(farms && farms[0] && farms[0].vikingPerBlock){
     vikingPerBlock = new BigNumber(farms[0].vikingPerBlock).div(new BigNumber(10).pow(18)).toNumber();
   }
