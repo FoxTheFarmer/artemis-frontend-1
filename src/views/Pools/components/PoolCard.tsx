@@ -95,7 +95,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const rvrsPrice = usePriceCakeBusd()
 
   const { secondsRemaining, hasUnstakingFee } = useWithdrawFeeTimer(
-      userData.lastDepositedTime.toNumber(),
+      userData ? userData.lastDepositedTime.toNumber() : 0,
       parseInt('259200', 10)
   );
 
